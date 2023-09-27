@@ -1,0 +1,83 @@
+.button {
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &__search {
+    width: 80px;
+    height: 32px;
+    background: no-repeat url('../../assets/icons/search.svg') center;
+    border-radius: 10px;
+    margin-right: 6px;
+    border: none;
+  }
+
+  &__func {
+    width: 25px;
+    height: 25px;
+    background: no-repeat url('../../assets/icons/dots.svg') center;
+    border-radius: 50px;
+    background-color: var(--primary);
+    border: none;
+  }
+
+  &__attach {
+    width: 25px;
+    height: 25px;
+    background: no-repeat url('../../assets/icons/file.svg') center;
+    border-radius: 50px;
+    border: none;
+  }
+
+  &__message {
+    width: 25px;
+    height: 25px;
+    background: no-repeat url('../../assets/icons/arrow.svg') center;
+    border-radius: 50px;
+    background-color: var(--primary);
+    border: none;
+  }
+
+  &__edit {
+    background: transparent;
+    border: none;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--gray);
+    width: 410px;
+    text-align: left;
+    color: var(--text-form);
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 13px;
+
+    &:last-of-type {
+      color: var(--error);
+      border-bottom: none;
+    }
+  }
+
+  &__back {
+    width: 25px;
+    height: 25px;
+    background: no-repeat url('../../assets/icons/left_arrow.svg') center;
+    border-radius: 50px;
+    background-color: var(--primary);
+    border: none;
+  }
+
+  &__save {
+    width: 280px;
+    height: 37px;
+    border-radius: 8px;
+    background: var(
+      --linear-2,
+      linear-gradient(180deg, var(--text-form) 0%, #27f9e5 52.66%, #2fffcd 100%)
+    );
+    border: none;
+    color: var(--secondary);
+    margin-top: 70px;
+  }
+}

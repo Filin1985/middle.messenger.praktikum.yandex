@@ -1,0 +1,14 @@
+.profile {
+  display: grid;
+  align-items: center;
+  max-width: 1280px;
+  width: 100%;
+  grid-template-columns: 64px auto;
+  padding: 0;
+
+  &__right {
+    max-width: 510px;
+    width: 100%;
+    justify-self: center;
+  }
+}

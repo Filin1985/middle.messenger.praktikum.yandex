@@ -1,0 +1,22 @@
+.auth {
+  max-width: 340px;
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__set {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 17px;
+    padding: 0;
+    border: none;
+    min-width: 280px;
+    margin: 0;
+  }
+}

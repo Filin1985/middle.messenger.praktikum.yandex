@@ -1,0 +1,29 @@
+<div class='messages'>
+    <div class='messages__header'>
+      <div class='messages__person'>
+        <img
+          class='avatar avatar_min'
+          src='../../assets/images/person_2.png'
+          alt='Avatar'
+        />
+        <h3 class='messages__name'>Андрей</h3>
+      </div>
+      {{> Button type='func'}}
+    </div>
+      <ul class='messages__list'>
+        {{#each messages as |message|}}
+            {{> Message message=message owner=message.current_user}}
+        {{/each}}
+      </ul>
+    <form class='messages__form'>
+      {{> Button type='attach'}}
+      <input
+        id='message-input'
+        class='messages__search'
+        type='text'
+        placeholder='Message'
+        name='message'
+      />
+      {{> Button type='message'}}
+    </form>
+  </div>

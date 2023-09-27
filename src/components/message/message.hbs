@@ -1,0 +1,15 @@
+<article class='message message__item_text {{#if owner}}message__owner{{/if}}'>
+  {{#with message}}
+    {{#if file}}
+        <img class='message__image' src={{file.path}} alt="Image Message">
+    {{else}}
+    <p class='message__text'>{{text}}</p>
+    {{/if}}
+    <div class='message__time'>
+        {{#if owner}}
+            <span class='message__time_icon'></span>
+        {{/if}}
+        {{time}}
+  </div>
+  {{/with}}
+</article>

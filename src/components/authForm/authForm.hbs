@@ -1,0 +1,13 @@
+<form class='auth' action='submit'>
+  <div class='auth__header'>
+    <h2 class='auth__title'>{{title}}</h2>
+  </div>
+  <fieldset class='auth__set'>
+    {{> Input classType='auth'}}
+    {{> Input classType='auth'}}
+  </fieldset>
+  <div class='auth__footer'>
+    {{> Button type='save' text='Enter'}}
+    {{> Link linkText='Create profile' to='/signup' type='auth'}}
+  </div>
+</form>

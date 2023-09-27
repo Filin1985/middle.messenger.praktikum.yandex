@@ -1,0 +1,100 @@
+.user {
+  display: flex;
+  width: 410px;
+  position: relative;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gray);
+
+  &:last-of-type {
+    border: none;
+  }
+
+  &__input {
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-rendering: optimizeLegibility;
+    border: none;
+    padding: 0;
+    text-align: right;
+    width: 200px;
+    width: 100%;
+    border-bottom: 1px solid transparent;
+    background-color: transparent;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__label {
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 13px;
+    width: 150px;
+    text-rendering: optimizeLegibility;
+    color: var(--text);
+  }
+}
+
+.auth {
+  display: flex;
+  width: 410px;
+  position: relative;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gray);
+
+  &:last-of-type {
+    border: none;
+  }
+
+  &__input {
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-rendering: optimizeLegibility;
+    border: none;
+    padding: 0;
+    text-align: right;
+    width: 200px;
+    width: 100%;
+    border-bottom: 1px solid transparent;
+    background-color: transparent;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__label {
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 13px;
+    width: 150px;
+    text-rendering: optimizeLegibility;
+    color: var(--text);
+  }
+}
+
+.error_visible {
+  opacity: 1;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  transition: 0.4s;
+}
+
+.item-error {
+  position: absolute;
+  color: var(--pink);
+  opacity: 1;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

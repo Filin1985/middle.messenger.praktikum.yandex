@@ -1,0 +1,15 @@
+<section class='profile'>
+    <div class='profile__left'>
+        {{> SideLink}}
+    </div>
+    {{#if isEdit}}
+    <div class='profile__right'>
+        {{> ProfileForm }}
+    </div>
+    {{else}}
+    <div class='profile__right'>
+        {{> ProfileForm }}
+        {{> Edit}}
+    </div>
+    {{/if}}
+</section>

@@ -1,0 +1,21 @@
+<form class='form' action='submit'>
+  {{>Avatar user=user}}
+  <fieldset class='profile__set'>
+      {{#if isPasswordChange}}
+        {{> Input classType='user' id='old-password' name='old-password' type='password' value=user.password placeholder='Password' label='Old password' }}
+        {{> Input classType='user' id='new-password' name='new-password' type='password' value=user.password placeholder='Password' label='New password' }}
+        {{> Input classType='user' id='repeat-password' name='repeat-password' type='password' value=user.password placeholder='Password' label='Repeat password' }}
+      {{else}}
+        {{> Input classType='user' id='email' name='email' type='email' value=user.email placeholder='Enter your email' label='Email' }}
+        {{> Input classType='user' id='login' name='login' type='text' value=user.login placeholder='Enter your login' label='Login'}}
+        {{> Input classType='user' id='name' name='name' type='text' value=user.first_name placeholder='Enter_your_name' label='Name'}}
+        {{> Input classType='user' id='surname' name='surname' type='text' value=user.second_name placeholder='Enter your surname' label='Surname'}}
+        {{> Input classType='user' id='username' name='username' type='text' value=user.display_name placeholder='Enter your username' label='Username'}}
+        {{> Input classType='user' id='phone' name='phone' type='text' value=user.phone placeholder='Enter your phone' label='Phone'}}
+      {{/if}}
+      {{#if isEdit}}
+        {{> Button type='save' text='Save'}}
+      {{/if}}
+    
+  </fieldset>
+</form>

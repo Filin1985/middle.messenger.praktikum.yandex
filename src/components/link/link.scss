@@ -1,0 +1,39 @@
+.link {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 12px;
+  text-decoration: none;
+  color: var(--text-form);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &_profile {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 12px;
+    color: var(--light-gray);
+  }
+
+  &_auth {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 12px;
+    color: var(--text);
+  }
+
+  &__icon_profile {
+    width: 20px;
+    height: 20px;
+    background: no-repeat url(../../assets/icons/prof_arrow.svg) center;
+  }
+}
