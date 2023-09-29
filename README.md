@@ -16,8 +16,8 @@
 
 ### Run the project
 
-use `npm run dev` - for start development <br>
-use `npm run start` - for build and start server
+run `npm run dev` - developing mode <br>
+run `npm run start` - server mode
 
 ### Netlify Pages
 
@@ -27,5 +27,6 @@ use `npm run start` - for build and start server
 [Profile](https://willowy-sprinkles-ae8e17.netlify.app/profile)
 [EditProfile](https://willowy-sprinkles-ae8e17.netlify.app/edit-profile)
 [ChangePassword](https://willowy-sprinkles-ae8e17.netlify.app/change-password)
+[EditAvatar](https://cerulean-malabi-a83c17.netlify.app/change-avatar)
 [Login](https://willowy-sprinkles-ae8e17.netlify.app/login)
 [Register](https://willowy-sprinkles-ae8e17.netlify.app/signup)
