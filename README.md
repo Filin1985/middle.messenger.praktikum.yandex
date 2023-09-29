@@ -8,11 +8,11 @@
 
 ### Stack:
 
-- Vite 4.4.9
 - Node.js >14.0.0
 - Handlebars
 - Typescript 5.2.2
 - SCSS
+- Vite 4.4.9
 
 ### Run the project
 
