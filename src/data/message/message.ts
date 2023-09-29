@@ -18,7 +18,7 @@ export const messageData: MessageType[] = [
     user_id: 1,
     file: {
       id: 1,
-      path: '../../assets/images/photo.png',
+      path: 'photo.png',
       size: 10000,
       content_type: 'image/jpeg',
     },
@@ -31,5 +31,6 @@ export const messageData: MessageType[] = [
     text: 'Круто!',
     user_id: 2,
     current_user: true,
+    avatar: 'person_2.png',
   },
 ];

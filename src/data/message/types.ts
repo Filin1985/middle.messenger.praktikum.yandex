@@ -14,4 +14,5 @@ export type MessageType = {
   user_id: number;
   file?: FileType;
   current_user?: boolean;
+  avatar?: string;
 };

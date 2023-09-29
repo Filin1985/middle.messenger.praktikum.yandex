@@ -5,6 +5,7 @@ import * as Components from './components';
 import {userData} from './data/user/user';
 import {messageData} from './data/message/message';
 import {chatData} from './data/chat/chat';
+import {imageUrl} from './config';
 
 const ROUTES: Record<string, Array<any>> = {
   '404': [Pages.NotFound],
@@ -36,3 +37,18 @@ const navigate = (route: string) => {
 document.addEventListener('DOMContentLoaded', () =>
   navigate(window.location.pathname)
 );
+
+Handlebars.registerHelper('image', function (options) {
+  const attrs = Object.keys(options.hash)
+    .map(function (key) {
+      if (key === 'src') {
+        const imgUrl = new URL(imageUrl + options.hash[key], import.meta.url)
+          .href;
+        return key + '="' + imgUrl + '"';
+      }
+      return key + '="' + options.hash[key] + '"';
+    })
+    .join(' ');
+
+  return '<img ' + attrs + '>' + '</>';
+});
