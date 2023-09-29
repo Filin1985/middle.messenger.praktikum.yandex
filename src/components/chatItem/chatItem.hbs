@@ -1,6 +1,6 @@
 <li class='chat__item'>
   {{#with chat}}
-    <img class='avatar' src={{avatar}} alt='Avatar' />
+    {{#image src=avatar alt='Avatar' class='avatar'}}{{/image}}
     <div class='chat__person'>
       <h3 class='chat__name'>{{user_name}}</h3>
       <p class='chat__text'>{{text}}</p>

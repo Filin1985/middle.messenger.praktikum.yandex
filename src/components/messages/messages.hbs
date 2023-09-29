@@ -1,11 +1,7 @@
 <div class='messages'>
     <div class='messages__header'>
       <div class='messages__person'>
-        <img
-          class='avatar avatar_min'
-          src='../../assets/images/person_2.png'
-          alt='Avatar'
-        />
+        {{#image src='person_2.png' alt='Avatar' class='avatar avatar_min'}}{{/image}}
         <h3 class='messages__name'>Андрей</h3>
       </div>
       {{> Button type='func'}}
