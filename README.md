@@ -21,12 +21,12 @@ run `npm run start` - server mode
 
 ### Netlify Pages
 
-[404](https://willowy-sprinkles-ae8e17.netlify.app/ff)
-[500](https://willowy-sprinkles-ae8e17.netlify.app/server-error)
-[Chat](https://willowy-sprinkles-ae8e17.netlify.app/)
-[Profile](https://willowy-sprinkles-ae8e17.netlify.app/profile)
-[EditProfile](https://willowy-sprinkles-ae8e17.netlify.app/edit-profile)
-[ChangePassword](https://willowy-sprinkles-ae8e17.netlify.app/change-password)
+[404](https://cerulean-malabi-a83c17.netlify.app/ff)
+[500](https://cerulean-malabi-a83c17.netlify.app/server-error)
+[Chat](https://cerulean-malabi-a83c17.netlify.app/)
+[Profile](https://cerulean-malabi-a83c17.netlify.app/profile)
+[EditProfile](https://cerulean-malabi-a83c17.netlify.app/edit-profile)
+[ChangePassword](https://cerulean-malabi-a83c17.netlify.app/change-password)
 [EditAvatar](https://cerulean-malabi-a83c17.netlify.app/change-avatar)
-[Login](https://willowy-sprinkles-ae8e17.netlify.app/login)
-[Register](https://willowy-sprinkles-ae8e17.netlify.app/signup)
+[Login](https://cerulean-malabi-a83c17.netlify.app/login)
+[Register](https://cerulean-malabi-a83c17.netlify.app/signup)
