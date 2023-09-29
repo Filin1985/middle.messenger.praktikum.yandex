@@ -40,34 +40,6 @@
     border: none;
   }
 
-  &__edit {
-    background: transparent;
-    border: none;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--gray);
-    width: 410px;
-    text-align: left;
-    color: var(--text-form);
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 13px;
-
-    &:last-of-type {
-      color: var(--error);
-      border-bottom: none;
-    }
-  }
-
-  &__back {
-    width: 25px;
-    height: 25px;
-    background: no-repeat url('../../assets/icons/left_arrow.svg') center;
-    border-radius: 50px;
-    background-color: var(--primary);
-    border: none;
-  }
-
   &__save {
     width: 280px;
     height: 37px;

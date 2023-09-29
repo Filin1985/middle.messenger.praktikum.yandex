@@ -1,6 +1,6 @@
 <section class='chat'>
   <div class='chat__sidebar'>
-    {{>Link linkText='Profile' route='/profile' type='profile' iconLink='profile'}}
+    {{>Link linkText='Profile' to='/profile' type='profile' iconLink='profile'}}
     <form class='chat__form'>
       <input
         id='search-input'
@@ -12,53 +12,9 @@
     {{> Button type='search'}}
     </form>
     <ul class='chat__list'>
-      <li class='chat__item'>
-        <img
-          class='avatar'
-          src='../../assets/images/person_2.png'
-          alt='Avatar'
-        />
-        <div class='chat__person'>
-          <h3 class='chat__name'>Андрей</h3>
-          <p class='chat__text'>Изображение</p>
-        </div>
-        <div class='chat__data'>
-          <p class='chat__time'>10:49</p>
-          <p class='chat__unread'>2</p>
-        </div>
-      </li>
-      <li class='chat__item'>
-        <img
-          class='avatar'
-          src='../../assets/images/person_1.png'
-          alt='Avatar'
-        />
-        <div class='chat__person'>
-          <h3 class='chat__name'>Надя</h3>
-          <p class='chat__text'>Lorem ipsum dolor sit amet consectetur,
-            adipisicing elit. Aspernatur rerum eaque, magni nemo eos recusandae?
-            Quis sed libero fuga illum.</p>
-        </div>
-        <div class='chat__data'>
-          <p class='chat__time'>10:49</p>
-        </div>
-      </li>
-      <li class='chat__item'>
-        <img
-          class='avatar'
-          src='../../assets/images/person_3.png'
-          alt='Avatar'
-        />
-        <div class='chat__person'>
-          <h3 class='chat__name'>Илья</h3>
-          <p class='chat__text'>Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Asperiores, atque!</p>
-        </div>
-        <div class='chat__data'>
-          <p class='chat__time'>10:49</p>
-          <p class='chat__unread'>1</p>
-        </div>
-      </li>
+      {{#each chats as |chat|}}
+            {{> ChatItem chat=chat }}
+      {{/each}}
     </ul>
   </div>
   {{> Messages}}

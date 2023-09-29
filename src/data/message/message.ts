@@ -1,4 +1,6 @@
-export const messageData = [
+import {MessageType} from './types';
+
+export const messageData: MessageType[] = [
   {
     id: 1,
     chat_id: 1,
@@ -18,7 +20,6 @@ export const messageData = [
       id: 1,
       path: '../../assets/images/photo.png',
       size: 10000,
-      upload_date: '2023-09-25T11:55:00.000Z',
       content_type: 'image/jpeg',
     },
   },

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "tsc && vite build &&  node ./server.cjs"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
@@ -18,7 +19,7 @@
     "vite": "^4.4.9",
     "vite-plugin-handlebars": "^1.6.0"
   },
-  "dependencies": {
-    "sass": "^1.68.0"
+  "engines": {
+    "node": ">= 14.0.0"
   }
 }

@@ -9,3 +9,4 @@ export {Edit} from './editForm';
 export {SideLink} from './sideLink';
 export {Divider} from './divider';
 export {AuthForm} from './authForm';
+export {ChatItem} from './chatItem';
