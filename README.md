@@ -19,10 +19,13 @@
 use `npm run dev` - for start development <br>
 use `npm run start` - for build and start server
 
-### Pages
+### Netlify Pages
 
-[404](http://localhost:5173/profile/d)
-
-### Netlify
-
-[Link]()
+[404](https://willowy-sprinkles-ae8e17.netlify.app/ff)
+[500](https://willowy-sprinkles-ae8e17.netlify.app/server-error)
+[Chat](https://willowy-sprinkles-ae8e17.netlify.app/)
+[Profile](https://willowy-sprinkles-ae8e17.netlify.app/profile)
+[EditProfile](https://willowy-sprinkles-ae8e17.netlify.app/edit-profile)
+[ChangePassword](https://willowy-sprinkles-ae8e17.netlify.app/change-password)
+[Login](https://willowy-sprinkles-ae8e17.netlify.app/login)
+[Register](https://willowy-sprinkles-ae8e17.netlify.app/signup)

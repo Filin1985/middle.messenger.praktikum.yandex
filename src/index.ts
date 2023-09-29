@@ -8,7 +8,7 @@ import {chatData} from './data/chat/chat';
 
 const ROUTES: Record<string, Array<any>> = {
   '404': [Pages.NotFound],
-  '500': [Pages.ServerError],
+  '/server-error': [Pages.ServerError],
   '/login': [Pages.Login, {title: 'Sign In', isEdit: true}],
   '/signup': [
     Pages.Login,
@@ -17,6 +17,7 @@ const ROUTES: Record<string, Array<any>> = {
   '/': [Pages.ChatPage, {messages: messageData, chats: chatData}],
   '/profile': [Pages.ProfilePage, {user: userData}],
   '/edit-profile': [Pages.ProfilePage, {user: userData, isEdit: true}],
+  '/change-avatar': [Pages.ProfilePage, {user: userData, isChangeAvatar: true}],
   '/change-password': [
     Pages.ProfilePage,
     {user: userData, isEdit: true, isPasswordChange: true},

@@ -10,3 +10,4 @@ export {SideLink} from './sideLink';
 export {Divider} from './divider';
 export {AuthForm} from './authForm';
 export {ChatItem} from './chatItem';
+export {ChangeAvatar} from './change-avatar';

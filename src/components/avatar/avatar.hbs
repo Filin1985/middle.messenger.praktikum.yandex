@@ -1,8 +1,11 @@
 <div class='photo'>
-  <img
-    class='photo__image'
-    src='../../assets/images/{{user.avatar}}'
-    alt='Avatar'
-  />
+  <div class='photo__box'>
+    <img
+      class='photo__image'
+      src='../../assets/images/{{user.avatar}}'
+      alt='Avatar'
+    />
+    {{> Link to='change-avatar' type='change'}}
+  </div>
   <h3 class='photo__name'>{{user.first_name}}</h3>
 </div>

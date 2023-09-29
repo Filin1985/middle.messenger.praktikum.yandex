@@ -1,0 +1,14 @@
+<form class='auth-form auth-form_absolute' action='submit'>
+  <div class='auth-form__header'>
+    <h2 class='auth-form__title'>{{title}}</h2>
+  </div>
+  <fieldset class='auth-form__set'>
+    <label>
+      <input type="file" name="file" class="file__input">
+      <span class="file__span">Choose file from computer</span>
+ 	</label>
+    <div class='avatar-form__footer'>
+      {{> Button type='save' text='Change' route='/profile'}}
+    </div>
+  </fieldset>
+</form>

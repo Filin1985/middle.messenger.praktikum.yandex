@@ -1,3 +1,11 @@
+@mixin font-props($weight, $size) {
+  font-size: $size;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: normal;
+  text-rendering: optimizeLegibility;
+}
+
 .user {
   display: flex;
   width: 410px;
@@ -10,11 +18,7 @@
   }
 
   &__input {
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-rendering: optimizeLegibility;
+    @include font-props(400, 13px);
     border: none;
     padding: 0;
     text-align: right;
@@ -29,12 +33,7 @@
   }
 
   &__label {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 13px;
-    width: 170px;
-    text-rendering: optimizeLegibility;
+    @include font-props(500, 14px);
     color: var(--text);
   }
 }
@@ -43,11 +42,7 @@
   width: 280px;
 
   &__input {
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-rendering: optimizeLegibility;
+    @include font-props(400, 13px);
     border: none;
     width: 280px;
     width: 100%;
@@ -62,14 +57,28 @@
   }
 
   &__label {
-    font-family: Inter;
-    font-size: 9px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 0%;
+    @include font-props(500, 9px);
     width: 150px;
-    text-rendering: optimizeLegibility;
     color: var(--border);
+  }
+}
+
+.file {
+  &__input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+  }
+
+  &__span {
+    color: var(--border);
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 
@@ -82,12 +91,8 @@
 }
 
 .item-error {
+  @include font-props(400, 10px);
   position: absolute;
   color: var(--pink);
   opacity: 1;
-  font-family: Inter;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
 }

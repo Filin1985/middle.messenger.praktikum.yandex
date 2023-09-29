@@ -1,3 +1,10 @@
+@mixin size($width, $height, $radius) {
+  width: $width;
+  height: $height;
+  border-radius: $radius;
+  border: none;
+}
+
 .button {
   cursor: pointer;
 
@@ -6,49 +13,37 @@
   }
 
   &__search {
-    width: 80px;
-    height: 32px;
+    @include size(80px, 32px, 10px);
     background: no-repeat url('../../assets/icons/search.svg') center;
-    border-radius: 10px;
     margin-right: 6px;
-    border: none;
   }
 
   &__func {
-    width: 25px;
-    height: 25px;
+    @include size(25px, 25px, 50px);
     background: no-repeat url('../../assets/icons/dots.svg') center;
     border-radius: 50px;
     background-color: var(--primary);
-    border: none;
   }
 
   &__attach {
-    width: 25px;
-    height: 25px;
+    @include size(25px, 25px, 50px);
     background: no-repeat url('../../assets/icons/file.svg') center;
     border-radius: 50px;
-    border: none;
   }
 
   &__message {
-    width: 25px;
-    height: 25px;
+    @include size(25px, 25px, 50px);
     background: no-repeat url('../../assets/icons/arrow.svg') center;
     border-radius: 50px;
     background-color: var(--primary);
-    border: none;
   }
 
   &__save {
-    width: 280px;
-    height: 37px;
-    border-radius: 8px;
+    @include size(280px, 37px, 8px);
     background: var(
       --linear-2,
       linear-gradient(180deg, var(--text-form) 0%, #27f9e5 52.66%, #2fffcd 100%)
     );
-    border: none;
     color: var(--secondary);
     margin-top: 70px;
   }

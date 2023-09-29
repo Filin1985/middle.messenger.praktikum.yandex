@@ -8,7 +8,6 @@
     height: 130px;
     width: 130px;
     border-radius: 50%;
-    margin-top: 60px;
   }
 
   &__name {
@@ -17,5 +16,9 @@
     font-weight: 500;
     line-height: 16px;
     margin: 21px 0 0 0;
+  }
+
+  &__box {
+    position: relative;
   }
 }
