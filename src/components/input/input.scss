@@ -1,0 +1,98 @@
+@mixin font-props($weight, $size) {
+  font-size: $size;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: normal;
+  text-rendering: optimizeLegibility;
+}
+
+.user {
+  display: flex;
+  width: 410px;
+  position: relative;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gray);
+
+  &:last-of-type {
+    border: none;
+  }
+
+  &__input {
+    @include font-props(400, 13px);
+    border: none;
+    padding: 0;
+    text-align: right;
+    width: 200px;
+    width: 100%;
+    border-bottom: 1px solid transparent;
+    background-color: transparent;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__label {
+    @include font-props(500, 14px);
+    color: var(--text);
+  }
+}
+
+.auth {
+  width: 280px;
+
+  &__input {
+    @include font-props(400, 13px);
+    border: none;
+    width: 280px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--gradient, #15bffd);
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__label {
+    @include font-props(500, 9px);
+    width: 150px;
+    color: var(--border);
+  }
+}
+
+.file {
+  &__input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+  }
+
+  &__span {
+    color: var(--border);
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.error_visible {
+  opacity: 1;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  transition: 0.4s;
+}
+
+.item-error {
+  @include font-props(400, 10px);
+  position: absolute;
+  color: var(--pink);
+  opacity: 1;
+}

@@ -1,0 +1,29 @@
+<form class='auth-form' action='submit'>
+  <div class='auth-form__header'>
+    <h2 class='auth-form__title'>{{title}}</h2>
+    {{> Divider}}
+  </div>
+  <fieldset class='auth-form__set'>
+    {{#if signup}}
+      {{> Input classType='auth' id='email' name='email' type='email' value=user.email placeholder='Enter your email' label='Email' }}
+      {{> Input classType='auth' id='login' name='login' type='text' value=user.login placeholder='Enter your login' label='Login'}}
+      {{> Input classType='auth' id='first_name' name='first_name' type='text' value=user.first_name placeholder='Enter your name' label='Name'}}
+      {{> Input classType='auth' id='second_name' name='second_name' type='text' value=user.second_name placeholder='Enter your surname' label='Surname'}}
+      {{> Input classType='auth' id='phone' name='phone' type='text' value=user.phone placeholder='Enter your phone' label='Phone'}}
+      {{> Input classType='auth' id='password' name='password' type='password' value=user.password placeholder='Password' label='Password' }}
+      {{> Input classType='auth' id='password' name='password' type='password' value=user.password placeholder='Password' label='Password (repeat)' }}
+    {{else}}
+      {{> Input classType='auth' id='login' name='login' type='text' value=user.login placeholder='Enter your login' label='Login'}}
+      {{> Input classType='auth' id='password' name='password' type='password' value=user.password placeholder='Password' label='Password' }}
+    {{/if}}
+  </fieldset>
+  <div class='auth-form__footer'>
+    {{#if signup}}
+      {{> Button type='save' text='Create profile'}}
+      {{> Link linkText='Sign in' to='/login' type='auth'}}
+    {{else}}
+      {{> Button type='save' text='Enter'}}
+      {{> Link linkText='Create profile' to='/signup' type='auth'}}
+    {{/if}}
+  </div>
+</form>

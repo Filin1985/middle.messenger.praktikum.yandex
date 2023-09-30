@@ -1,0 +1,20 @@
+@mixin font-props($weight, $size) {
+  font-size: $size;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: normal;
+  margin: 0;
+}
+
+.not-found {
+  height: 100vh;
+
+  &__title {
+    @include font-props(500, 40px);
+  }
+
+  &__subtitle {
+    @include font-props(500, 20px);
+    padding: 20px 0 69px 0;
+  }
+}

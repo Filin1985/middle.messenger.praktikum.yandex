@@ -1,0 +1,7 @@
+<div class='photo'>
+  <div class='photo__box'>
+    {{#image src=user.avatar alt='Avatar' class='photo__image'}}{{/image}}
+    {{> Link to='change-avatar' type='change'}}
+  </div>
+  <h3 class='photo__name'>{{user.first_name}}</h3>
+</div>

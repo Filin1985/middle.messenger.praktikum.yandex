@@ -1,0 +1,50 @@
+@mixin size($width, $height, $radius) {
+  width: $width;
+  height: $height;
+  border-radius: $radius;
+  border: none;
+}
+
+.button {
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &__search {
+    @include size(80px, 32px, 10px);
+    background: no-repeat url("../../assets/icons/search.svg") center;
+    margin-right: 6px;
+  }
+
+  &__func {
+    @include size(25px, 25px, 50px);
+    background: no-repeat url("../../assets/icons/dots.svg") center;
+    border-radius: 50px;
+    background-color: var(--primary);
+  }
+
+  &__attach {
+    @include size(25px, 25px, 50px);
+    background: no-repeat url("../../assets/icons/file.svg") center;
+    border-radius: 50px;
+  }
+
+  &__message {
+    @include size(25px, 25px, 50px);
+    background: no-repeat url("../../assets/icons/arrow.svg") center;
+    border-radius: 50px;
+    background-color: var(--primary);
+  }
+
+  &__save {
+    @include size(280px, 37px, 8px);
+    background: var(
+      --linear-2,
+      linear-gradient(180deg, var(--text-form) 0%, #27f9e5 52.66%, #2fffcd 100%)
+    );
+    color: var(--secondary);
+    margin-top: 70px;
+  }
+}

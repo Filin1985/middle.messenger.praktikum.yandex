@@ -1,0 +1,71 @@
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+.link {
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 12px;
+  text-decoration: none;
+  color: var(--text-form);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &_profile {
+    color: var(--light-gray);
+  }
+
+  &_auth {
+    color: var(--text);
+  }
+
+  &__icon_profile {
+    @include size(20px, 20px);
+    background: no-repeat url('../../assets/icons/prof_arrow.svg') center;
+  }
+
+  &_edit {
+    background: transparent;
+    border: none;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--gray);
+    width: 410px;
+    justify-content: flex-start;
+    color: var(--text-form);
+
+    &:last-of-type {
+      color: var(--error);
+      border-bottom: none;
+    }
+  }
+
+  &_back {
+    @include size(25px, 25px);
+    background: no-repeat url('../../assets/icons/left_arrow.svg') center;
+    border-radius: 50px;
+    background-color: var(--primary);
+    border: none;
+  }
+
+  &_change {
+    @include size(130px, 130px);
+    top: 0;
+    left: 0;
+    position: absolute;
+    border-radius: 50%;
+
+    &:hover {
+      background: no-repeat url('../../assets/icons/edit.svg') center;
+      background-color: var(--primary);
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<li class='chat__item'>
+  {{#with chat}}
+    {{#image src=avatar alt='Avatar' class='avatar'}}{{/image}}
+    <div class='chat__person'>
+      <h3 class='chat__name'>{{user_name}}</h3>
+      <p class='chat__text'>{{text}}</p>
+    </div>
+    <div class='chat__data'>
+      <p class='chat__time'>{{time}}</p>
+      {{#if unread}}
+        <p class='chat__unread'>{{unread}}</p>
+      {{/if}}
+    </div>
+  {{/with}}
+</li>
