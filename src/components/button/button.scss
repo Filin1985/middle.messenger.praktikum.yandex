@@ -14,26 +14,26 @@
 
   &__search {
     @include size(80px, 32px, 10px);
-    background: no-repeat url('../../assets/icons/search.svg') center;
+    background: no-repeat url("../../assets/icons/search.svg") center;
     margin-right: 6px;
   }
 
   &__func {
     @include size(25px, 25px, 50px);
-    background: no-repeat url('../../assets/icons/dots.svg') center;
+    background: no-repeat url("../../assets/icons/dots.svg") center;
     border-radius: 50px;
     background-color: var(--primary);
   }
 
   &__attach {
     @include size(25px, 25px, 50px);
-    background: no-repeat url('../../assets/icons/file.svg') center;
+    background: no-repeat url("../../assets/icons/file.svg") center;
     border-radius: 50px;
   }
 
   &__message {
     @include size(25px, 25px, 50px);
-    background: no-repeat url('../../assets/icons/arrow.svg') center;
+    background: no-repeat url("../../assets/icons/arrow.svg") center;
     border-radius: 50px;
     background-color: var(--primary);
   }
