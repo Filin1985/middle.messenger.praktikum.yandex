@@ -1,0 +1,17 @@
+<div class="login">
+  {{#> AuthForm  title='Registration' ref="loginForm"}}
+    <fieldset class='auth-form__set'>
+      {{{ InputAuth validateType='emailValidation' classType='auth' isEdit='true' id='email' name='email' type='email' value=user.email placeholder='Enter your email' label='Email' ref="email" }}}
+      {{{ InputAuth validateType='loginValidation' classType='auth' isEdit='true' id='login' name='login' type='text' value=user.login placeholder='Enter your login' label='Login'ref="login" }}}
+      {{{ InputAuth validateType='nameValidation' classType='auth' isEdit='true' id='first_name' name='first_name' type='text' value=user.first_name placeholder='Enter your name' label='Name'ref="first_name" }}}
+      {{{ InputAuth validateType='nameValidation' classType='auth' isEdit='true' id='second_name' name='second_name' type='text' value=user.second_name placeholder='Enter your surname' label='Surname' ref="second_name" }}}
+      {{{ InputAuth validateType='phoneValidation' classType='auth' isEdit='true' id='phone' name='phone' type='text' value=user.phone placeholder='Enter your phone' label='Phone' ref="phone" }}}
+      {{{ InputAuth validateType='passwordValidation' classType='auth' isEdit='true' id='password' name='password' type='password' value=user.password placeholder='Password' label='Password' ref="password" }}}
+      {{{ InputAuth validateType='passwordValidation' classType='auth' isEdit='true' id='password' name='password' type='password' value=user.password placeholder='Password' label='Password (repeat)' ref="repeat_password" }}}
+    </fieldset>
+    <div class='auth-form__footer'>
+      {{{ Button type='save' text='Create profile' onSubmit=onLogin ref="signUp"}}}
+      {{{ Link linkText='Sign in' to='/login' type='auth'}}}
+    </div>
+  {{/AuthForm}}
+</div>

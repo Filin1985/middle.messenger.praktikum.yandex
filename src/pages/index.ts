@@ -1,5 +1,9 @@
-export {NotFound} from './404';
-export {ServerError} from './500';
-export {ChatPage} from './chat';
-export {ProfilePage} from './profile';
-export {Login} from './login';
+export { NotFound } from "./404";
+export { ServerError } from "./500";
+export { ChatPage } from "./chat";
+export { ProfilePage } from "./profile";
+export { EditProfilePage } from "./edit-profile";
+export { EditPasswordPage } from "./edit-password";
+export { ChangeAvatarPage } from "./change-avatar";
+export { Login } from "./login";
+export { Signup } from "./signup";

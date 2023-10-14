@@ -26,17 +26,6 @@
     margin-top: 23px;
   }
 
-  &__search {
-    @include font-props(400, 13px);
-    background-color: transparent;
-    border: none;
-    padding-left: 22px;
-    max-width: 1000px;
-    width: 100%;
-    outline: none;
-    color: var(--gray);
-  }
-
   &__list {
     padding: 0;
     margin: 14px 0 0 0;
@@ -54,8 +43,8 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas:
-      'avatar person person data'
-      'avatar person person data';
+      "avatar person person data"
+      "avatar person person data";
 
     &:hover {
       cursor: pointer;

@@ -1,19 +1,9 @@
-<section class='profile'>
-    <div class='profile__left'>
-        {{> SideLink}}
-    </div>
-    {{#if isEdit}}
-    <div class='profile__right'>
-        {{> ProfileForm }}
-    </div>
-    {{else}}
-    <div class='profile__right'>
-        {{> ProfileForm }}
-        {{> Edit}}
-    </div>
-    {{/if}}
-    {{#if isChangeAvatar}}
-    {{> ChangeAvatar title='Download file'}}
-    <div class='profile__shadow'></div>
-    {{/if}}
+<section class="profile">
+  <div class="profile__left">
+    {{{SideLink}}}
+  </div>
+  <div class="profile__right">
+    {{{ProfileForm}}}
+    {{{EditForm}}}
+  </div>
 </section>

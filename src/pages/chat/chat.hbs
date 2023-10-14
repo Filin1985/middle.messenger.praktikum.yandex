@@ -1,21 +1,17 @@
-<section class='chat'>
-  <div class='chat__sidebar'>
-    {{>Link linkText='Profile' to='/profile' type='profile' iconLink='profile'}}
-    <form class='chat__form'>
-      <input
-        id='search-input'
-        class='chat__search'
-        type='text'
-        placeholder='Search'
-        name='search'
-      />
-      {{> Button type='search'}}
-    </form>
-    <ul class='chat__list'>
+<section class="chat">
+  <div class="chat__sidebar">
+    {{{Link
+      linkText="Profile"
+      to="/profile"
+      type="profile"
+      iconLink="profile"
+    }}}
+    {{{InputSearch name="search" ref="search" onClick=onClick}}}
+    <ul class="chat__list">
       {{#each chats as |chat|}}
-            {{> ChatItem chat=chat }}
+        {{{ChatItem chat=chat}}}
       {{/each}}
     </ul>
   </div>
-  {{> Messages}}
+  {{{Messages}}}
 </section>

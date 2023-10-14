@@ -1,0 +1,27 @@
+<div class={{classType}}>
+  <label class="{{classType}}__label" htmlFor={{name}}>{{label}}</label>
+  {{{Input
+    classType="auth"
+    isEdit="true"
+    id=name
+    name=name
+    type="text"
+    value=user.login
+    placeholder=placeholder
+    label=label
+    ref="input"
+    onBlur=onBlur
+  }}}
+  {{!-- <input
+    ref="input"
+    class="{{classType}}__input"
+    id="{{id}}"
+    name="{{name}}"
+    type="{{type}}"
+    value="{{value}}"
+    placeholder="{{placeholder}}"
+    minLength="2"
+    maxLength="30"
+  /> --}}
+  {{{Error error=error ref="error"}}}
+</div>
