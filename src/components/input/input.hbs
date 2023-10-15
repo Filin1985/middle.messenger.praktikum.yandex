@@ -1,32 +1,10 @@
-<div class={{classType}}>
-  <label class="{{classType}}__label" htmlFor={{name}}>{{label}}</label>
-  {{#if isEdit}}
-    <input
-      class="{{classType}}__input"
-      id="{{id}}"
-      name="{{name}}"
-      type="{{type}}"
-      value="{{value}}"
-      placeholder="{{placeholder}}"
-      minLength="2"
-      maxLength="30"
-    />
-  {{else}}
-    <input
-      class="{{classType}}__input"
-      id="{{id}}"
-      name="{{name}}"
-      type="{{type}}"
-      value="{{value}}"
-      placeholder="{{placeholder}}"
-      disabled
-      minLength="2"
-      maxLength="30"
-    />
-  {{/if}}
-  {{#if error}}
-    <span class="item-error">
-      {{error}}
-    </span>
-  {{/if}}
-</div>
+<input
+  ref="input"
+  class="{{classType}}__input"
+  id="{{id}}"
+  name="{{name}}"
+  type="{{type}}"
+  {{#if value}}value="{{value}}"{{/if}}
+  placeholder="{{placeholder}}"
+  {{#if disabled}}disabled="{{disabled}}"{{/if}}
+/>

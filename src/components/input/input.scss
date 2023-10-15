@@ -3,7 +3,6 @@
   font-style: normal;
   font-weight: $weight;
   line-height: normal;
-  text-rendering: optimizeLegibility;
 }
 
 .user {
@@ -35,20 +34,21 @@
   &__label {
     @include font-props(500, 14px);
     color: var(--text);
+    width: 180px;
   }
 }
 
 .auth {
   width: 280px;
+  position: relative;
 
   &__input {
     @include font-props(400, 13px);
-    border: none;
     width: 280px;
     width: 100%;
     border-radius: 8px;
     border: 1px solid var(--gradient, #15bffd);
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 5%);
     padding: 10px;
 
     &:focus {
@@ -60,6 +60,41 @@
     @include font-props(500, 9px);
     width: 150px;
     color: var(--border);
+  }
+}
+
+.search {
+  &__input {
+    @include font-props(400, 13px);
+    background-color: transparent;
+    border: none;
+    padding-left: 22px;
+    max-width: 1000px;
+    width: 100%;
+    outline: none;
+    color: var(--gray);
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.message {
+  &__input {
+    @include font-props(400, 13px);
+    border: none;
+    padding-left: 22px;
+    max-width: 1000px;
+    width: 100%;
+    outline: none;
+    color: var(--gray);
+    background-color: var(--light-background);
+    border-radius: 10px;
+
+    &:focus {
+      outline: none;
+    }
   }
 }
 

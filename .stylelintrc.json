@@ -1,0 +1,15 @@
+{
+  "extends": ["stylelint-config-standard-scss"],
+  "rules": {
+    "selector-class-pattern": "[a-z-_]+",
+    "function-url-quotes": "never",
+    "import-notation": "url",
+    "property-no-vendor-prefix": null,
+    "font-family-no-duplicate-names": null,
+    "declaration-empty-line-before": "never",
+    "color-function-notation": "legacy",
+    "no-descending-specificity": null,
+    "declaration-block-no-redundant-longhand-properties": null
+  },
+  "ignoreFiles": ["build/*"]
+}

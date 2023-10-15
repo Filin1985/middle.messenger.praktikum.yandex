@@ -1,54 +1,83 @@
-import './style/index.scss';
-import Handlebars from 'handlebars';
-import * as Pages from './pages';
-import * as Components from './components';
-import {userData} from './data/user/user';
-import {messageData} from './data/message/message';
-import {chatData} from './data/chat/chat';
-import {imageUrl} from './config';
+import "./style/index.scss";
+import Handlebars from "handlebars";
+import { imageUrl } from "./config";
+import Block from "./core/Block";
+import { Globals, Global } from "./types";
+import { loadGlobals, registerGlobals } from "./utils/utils";
 
-const ROUTES: Record<string, Array<any>> = {
-  '404': [Pages.NotFound],
-  '/server-error': [Pages.ServerError],
-  '/login': [Pages.Login, {title: 'Sign In', isEdit: true}],
-  '/signup': [
-    Pages.Login,
-    {title: 'Registration', isEdit: true, signup: true, user: userData},
-  ],
-  '/': [Pages.ChatPage, {messages: messageData, chats: chatData}],
-  '/profile': [Pages.ProfilePage, {user: userData}],
-  '/edit-profile': [Pages.ProfilePage, {user: userData, isEdit: true}],
-  '/change-avatar': [Pages.ProfilePage, {user: userData, isChangeAvatar: true}],
-  '/change-password': [
-    Pages.ProfilePage,
-    {user: userData, isEdit: true, isPasswordChange: true},
-  ],
-};
-
-Object.entries(Components).forEach(([name, component]) => {
-  Handlebars.registerPartial(name, component);
+const Components: Globals = import.meta.glob("./components/**/*.ts", {
+  eager: true,
+});
+const Partials: Globals = import.meta.glob("./partials/**/*.ts", {
+  eager: true,
+});
+const Pages: Globals = import.meta.glob("./pages/**/*.ts", {
+  eager: true,
 });
 
-const navigate = (route: string) => {
-  const [source, context] = ROUTES[route] || ROUTES['404'];
-  const container = document.getElementById('app')!;
-  container.innerHTML = Handlebars.compile(source)(context);
-};
-document.addEventListener('DOMContentLoaded', () =>
-  navigate(window.location.pathname)
-);
+const partials: Global = loadGlobals(Partials);
+const components: Global = loadGlobals(Components);
+const pages: Global = loadGlobals(Pages);
 
-Handlebars.registerHelper('image', function (options) {
+registerGlobals(partials);
+registerGlobals(components);
+registerGlobals(pages);
+
+const navigate = (page: string) => {
+  if (pages[page]) {
+    const app = document.getElementById("app");
+    if (app) {
+      const Component = pages[page] as unknown as typeof Block;
+      if (typeof Component !== "string") {
+        const component = new Component({});
+        const content = component.getContent();
+        if (content !== null) {
+          app.innerHTML = "";
+          app.append(content);
+        }
+      } else {
+        const content = Handlebars.compile(pages[page])({});
+        if (content !== null) {
+          app.innerHTML = content;
+        }
+      }
+    }
+  }
+};
+
+// Login
+// Signup
+// NotFound
+// ServerError
+// ChatPage
+// ProfilePage
+// EditProfilePage
+// EditPasswordPage
+// ChangeAvatarPage
+
+document.addEventListener("DOMContentLoaded", () => navigate("Login"));
+
+document.addEventListener("click", (e) => {
+  const target: HTMLElement = e.target as HTMLElement;
+  const page = target.getAttribute("page");
+  if (page) {
+    navigate(page);
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
+});
+
+Handlebars.registerHelper("image", (options) => {
   const attrs = Object.keys(options.hash)
-    .map(function (key) {
-      if (key === 'src') {
+    .map((key) => {
+      if (key === "src") {
         const imgUrl = new URL(imageUrl + options.hash[key], import.meta.url)
           .href;
         return key + '="' + imgUrl + '"';
       }
       return key + '="' + options.hash[key] + '"';
     })
-    .join(' ');
+    .join(" ");
 
-  return '<img ' + attrs + '>' + '</>';
+  return "<img " + attrs + ">" + "</>";
 });

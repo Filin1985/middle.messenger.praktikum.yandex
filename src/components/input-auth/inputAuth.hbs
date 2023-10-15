@@ -1,0 +1,17 @@
+<div class={{classType}}>
+  <label class="{{classType}}__label" htmlFor={{name}}>{{label}}</label>
+  {{{Input
+    classType=classType
+    isEdit=isEdit
+    id=name
+    name=name
+    type=type
+    value=value
+    placeholder=placeholder
+    label=label
+    ref="input"
+    onBlur=onBlur
+    disabled=disabled
+  }}}
+  {{{Error error=error ref="error"}}}
+</div>

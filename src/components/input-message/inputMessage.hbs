@@ -1,0 +1,13 @@
+<form class="messages__form">
+  {{{Button type="attach"}}}
+  {{{Input
+    name="message"
+    type="text"
+    classType="message"
+    value=user.message
+    ref="input"
+    placeholder="Message"
+  }}}
+  {{{Button type="message" onSubmit=onClick}}}
+  {{{Error error=error ref="error"}}}
+</form>
