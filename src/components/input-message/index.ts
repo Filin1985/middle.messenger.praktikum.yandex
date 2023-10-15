@@ -26,8 +26,7 @@ export class InputMessage extends Block {
     const value = this._value();
     const errorText =
       validator[this.props.validateType as keyof typeof validator](value);
-    if (errorText !== "") {
-      console.log(errorText);
+    if (errorText) {
       const errorBlock = this.refs.error || null;
       if (errorBlock instanceof Block) {
         errorBlock.setProps({ error: errorText });

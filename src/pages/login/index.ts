@@ -10,9 +10,8 @@ export class Login extends Block {
       onLogin: (event: Event | undefined) => {
         if (!event) return;
         event.preventDefault();
-        const children = Object.values(this.refs);
         const dataInputs: Record<string, string | false> = {};
-        children.forEach((child) => {
+        Object.values(this.refs).forEach((child) => {
           if (child instanceof InputAuth) {
             dataInputs[child.name] = child.value();
           }

@@ -1,9 +1,9 @@
 import "./style/index.scss";
 import Handlebars from "handlebars";
 import { imageUrl } from "./config";
-import { registerComponent } from "./core/registerComponent";
 import Block from "./core/Block";
 import { Globals, Global } from "./types";
+import { loadGlobals, registerGlobals } from "./utils/utils";
 
 const Components: Globals = import.meta.glob("./components/**/*.ts", {
   eager: true,
@@ -15,30 +15,9 @@ const importPartials: Globals = import.meta.glob("./partials/**/*.ts", {
   eager: true,
 });
 
-const loadGlobals = (globals: Globals): Global => {
-  const result: Global = {};
-  Object.keys(globals).forEach((route: string) => {
-    Object.keys(globals[route]).forEach((name: string) => {
-      result[name] = globals[route][name];
-    });
-  });
-  return result;
-};
-
 const components: Global = loadGlobals(Components);
 const pages: Global = loadGlobals(Pages);
 const partials: Global = loadGlobals(importPartials);
-
-const registerGlobals = (globals: Global) => {
-  Object.keys(globals).forEach((name: string) => {
-    const value = globals[name];
-    if (typeof value === "string") {
-      Handlebars.registerPartial(name, value);
-    } else {
-      registerComponent(name, value);
-    }
-  });
-};
 
 registerGlobals(components);
 registerGlobals(pages);
@@ -71,26 +50,29 @@ const navigate = (page: string) => {
 // NotFound
 // ServerError
 // ChatPage
-// Profile
-// EditProfile
-// EditPassword
-// ChangeAvatar
+// ProfilePage
+// EditProfilePage
+// EditPasswordPage
+// ChangeAvatarPage
 
-document.addEventListener("DOMContentLoaded", () => navigate("ChatPage"));
+document.addEventListener("DOMContentLoaded", () => navigate("Login"));
 
 document.addEventListener("click", (e) => {
   const target: HTMLElement = e.target as HTMLElement;
   const page = target.getAttribute("page");
+  console.log(page);
   if (page) {
     navigate(page);
-    e.preventDefault();
-    e.stopImmediatePropagation();
+  } else {
+    navigate("NotFound");
   }
+  e.preventDefault();
+  e.stopImmediatePropagation();
 });
 
-Handlebars.registerHelper("image", function (options) {
+Handlebars.registerHelper("image", (options) => {
   const attrs = Object.keys(options.hash)
-    .map(function (key) {
+    .map((key) => {
       if (key === "src") {
         const imgUrl = new URL(imageUrl + options.hash[key], import.meta.url)
           .href;

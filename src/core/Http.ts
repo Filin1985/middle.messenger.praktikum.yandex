@@ -1,4 +1,4 @@
-import { Options, Http } from "./types";
+import { Options, HttpProps } from "./types";
 
 const METHODS = {
   GET: "GET",
@@ -9,7 +9,7 @@ const METHODS = {
 
 type HTTPMethod = (url: string, options: Options) => Promise<unknown>;
 
-class HTTP implements Http {
+class HTTP implements HttpProps {
   get: HTTPMethod = (url, options) => {
     let resUrl = url;
     const { data } = options;

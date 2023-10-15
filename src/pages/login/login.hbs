@@ -5,8 +5,8 @@
       {{{ InputAuth validateType='passwordValidation' ref='password' name='password' classType='auth' label="Password" placeholder="Enter your password"}}}
     </fieldset>
     <div class='auth-form__footer'>
-      {{{ Button type='save' text='Enter' onSubmit=onLogin ref="signIn"}}}
-      {{{ Link linkText='Create profile' to='/signup' type='auth'}}}
+      {{{ Button type='save' text='Enter' onSubmit=onLogin ref="signIn" page='ChatPage'}}}
+      {{{ Link linkText='Create profile' to='/signup' type='auth' page='Signup'}}}
     </div>
   {{/AuthForm}}
 </div>

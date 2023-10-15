@@ -42,6 +42,7 @@ export const validator = {
   },
 
   phoneValidation: (value: string) => {
+    // eslint-disable-next-line no-useless-escape
     if (!value.match(/^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/)) {
       return "Phone doesn't match the pattern";
     }

@@ -3,14 +3,8 @@ import { Props } from "../../core/types";
 import { validator } from "../../utils/validation";
 import InputAuthTemplate from "./inputAuth.hbs?raw";
 
-interface AuthInputProps extends Props {
-  onBlur: () => void;
-  errorText: string;
-  error: boolean;
-}
-
 export class InputAuth extends Block {
-  constructor(props: AuthInputProps) {
+  constructor(props: Props) {
     super({
       ...props,
       onBlur: () => this.validate(),
@@ -33,8 +27,7 @@ export class InputAuth extends Block {
     const value = this._value();
     const errorText =
       validator[this.props.validateType as keyof typeof validator](value);
-    if (errorText !== "") {
-      console.log(errorText);
+    if (errorText) {
       const errorBlock = this.refs.error || null;
       if (errorBlock instanceof Block) {
         errorBlock.setProps({ error: errorText });

@@ -4,7 +4,7 @@
     {{#if isPasswordChange}}
       {{{InputAuth
         classType="user"
-        isEdit="true"
+        isEdit=isEdit
         id="oldPassword"
         name="oldPassword"
         type="password"
@@ -14,7 +14,7 @@
       }}}
       {{{InputAuth
         classType="user"
-        isEdit="true"
+        isEdit=isEdit
         id="newPassword"
         name="newPassword"
         type="password"
@@ -24,7 +24,7 @@
       }}}
       {{{InputAuth
         classType="user"
-        isEdit="true"
+        isEdit=isEdit
         id="repeatPassword"
         name="repeatPassword"
         type="password"
@@ -35,36 +35,46 @@
     {{else}}
       {{{InputAuth
         classType="user"
-        isEdit="true"
+        validateType="emailValidation"
+        isEdit=isEdit
         id="email"
         name="email"
         type="email"
         value=user.email
         placeholder="Enter your email"
         label="Email"
+        disabled=disabled
+        ref="email"
       }}}
       {{{InputAuth
         classType="user"
-        isEdit="true"
+        validateType="loginValidation"
+        isEdit=isEdit
         id="login"
         name="login"
         type="text"
         value=user.login
         placeholder="Enter your login"
         label="Login"
+        disabled=disabled
+        ref="login"
       }}}
       {{{InputAuth
         classType="user"
-        isEdit="true"
+        validateType="nameValidation"
+        isEdit=isEdit
         id="first_name"
         name="first_name"
         type="text"
         value=user.first_name
         placeholder="Enter_your_name"
         label="Name"
+        disabled=disabled
+        ref="first_name"
       }}}
       {{{InputAuth
         classType="user"
+        validateType="nameValidation"
         isEdit="true"
         id="second_name"
         name="second_name"
@@ -72,9 +82,12 @@
         value=user.second_name
         placeholder="Enter your surname"
         label="Surname"
+        disabled=disabled
+        ref="second_name"
       }}}
       {{{InputAuth
         classType="user"
+        validateType="nameValidation"
         isEdit="true"
         id="display_name"
         name="display_name"
@@ -82,9 +95,12 @@
         value=user.display_name
         placeholder="Enter your username"
         label="Username"
+        disabled=disabled
+        ref="display_name"
       }}}
       {{{InputAuth
         classType="user"
+        validateType="phoneValidation"
         isEdit="true"
         id="phone"
         name="phone"
@@ -92,10 +108,12 @@
         value=user.phone
         placeholder="Enter your phone"
         label="Phone"
+        disabled=disabled
+        ref="phone"
       }}}
     {{/if}}
     {{#if isEdit}}
-      {{{Button type="save" text="Save"}}}
+      {{{Button type="save" text="Save" onSubmit=onClick ref="edit" page=page}}}
     {{/if}}
   </fieldset>
 </form>

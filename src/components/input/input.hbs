@@ -4,6 +4,7 @@
   id="{{id}}"
   name="{{name}}"
   type="{{type}}"
-  value="{{value}}"
+  {{#if value}}value="{{value}}"{{/if}}
   placeholder="{{placeholder}}"
+  {{#if disabled}}disabled="{{disabled}}"{{/if}}
 />

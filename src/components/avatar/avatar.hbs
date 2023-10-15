@@ -1,8 +1,7 @@
 <div class="photo">
   <div class="photo__box">
-    <img src={{{user.avatar}}} alt="image avatar" class="avatar__image" />
     {{#image src=user.avatar alt="Avatar" class="photo__image"}}{{/image}}
-    {{{Link to="change-avatar" type="change"}}}
+    {{{Link to="change-avatar" type="change" page="ChangeAvatarPage"}}}
   </div>
   <h3 class="photo__name">{{user.first_name}}</h3>
 </div>

@@ -7,11 +7,11 @@
       {{{ InputAuth validateType='nameValidation' classType='auth' isEdit='true' id='second_name' name='second_name' type='text' value=user.second_name placeholder='Enter your surname' label='Surname' ref="second_name" }}}
       {{{ InputAuth validateType='phoneValidation' classType='auth' isEdit='true' id='phone' name='phone' type='text' value=user.phone placeholder='Enter your phone' label='Phone' ref="phone" }}}
       {{{ InputAuth validateType='passwordValidation' classType='auth' isEdit='true' id='password' name='password' type='password' value=user.password placeholder='Password' label='Password' ref="password" }}}
-      {{{ InputAuth validateType='passwordValidation' classType='auth' isEdit='true' id='password' name='password' type='password' value=user.password placeholder='Password' label='Password (repeat)' ref="repeat_password" }}}
+      {{{ InputAuth validateType='passwordValidation' classType='auth' isEdit='true' id='repeat_password' name='password' type='password' value=user.password placeholder='Password' label='Password (repeat)' ref="repeat_password" }}}
     </fieldset>
     <div class='auth-form__footer'>
-      {{{ Button type='save' text='Create profile' onSubmit=onLogin ref="signUp"}}}
-      {{{ Link linkText='Sign in' to='/login' type='auth'}}}
+      {{{ Button type='save' text='Create profile' onSubmit=onLogin ref="signUp" page='ProfilePage'}}}
+      {{{ Link linkText='Sign in' to='/login' type='auth' page='Login'}}}
     </div>
   {{/AuthForm}}
 </div>
