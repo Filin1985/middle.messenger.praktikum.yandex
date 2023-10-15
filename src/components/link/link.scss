@@ -30,7 +30,7 @@
 
   &__icon_profile {
     @include size(20px, 20px);
-    background: no-repeat url('../../assets/icons/prof_arrow.svg') center;
+    background: no-repeat url(../../assets/icons/prof_arrow.svg) center;
   }
 
   &_edit {
@@ -50,7 +50,7 @@
 
   &_back {
     @include size(25px, 25px);
-    background: no-repeat url('../../assets/icons/left_arrow.svg') center;
+    background: no-repeat url(../../assets/icons/left_arrow.svg) center;
     border-radius: 50px;
     background-color: var(--primary);
     border: none;
@@ -64,7 +64,7 @@
     border-radius: 50%;
 
     &:hover {
-      background: no-repeat url('../../assets/icons/edit.svg') center;
+      background: no-repeat url(../../assets/icons/edit.svg) center;
       background-color: var(--primary);
     }
   }
