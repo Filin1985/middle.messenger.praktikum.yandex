@@ -60,14 +60,11 @@ document.addEventListener("DOMContentLoaded", () => navigate("Login"));
 document.addEventListener("click", (e) => {
   const target: HTMLElement = e.target as HTMLElement;
   const page = target.getAttribute("page");
-  console.log(page);
   if (page) {
     navigate(page);
-  } else {
-    navigate("NotFound");
+    e.preventDefault();
+    e.stopImmediatePropagation();
   }
-  e.preventDefault();
-  e.stopImmediatePropagation();
 });
 
 Handlebars.registerHelper("image", (options) => {
