@@ -8,20 +8,20 @@ import { loadGlobals, registerGlobals } from "./utils/utils";
 const Components: Globals = import.meta.glob("./components/**/*.ts", {
   eager: true,
 });
+const Partials: Globals = import.meta.glob("./partials/**/*.ts", {
+  eager: true,
+});
 const Pages: Globals = import.meta.glob("./pages/**/*.ts", {
   eager: true,
 });
-const importPartials: Globals = import.meta.glob("./partials/**/*.ts", {
-  eager: true,
-});
 
+const partials: Global = loadGlobals(Partials);
 const components: Global = loadGlobals(Components);
 const pages: Global = loadGlobals(Pages);
-const partials: Global = loadGlobals(importPartials);
 
+registerGlobals(partials);
 registerGlobals(components);
 registerGlobals(pages);
-registerGlobals(partials);
 
 const navigate = (page: string) => {
   if (pages[page]) {
