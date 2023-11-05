@@ -6,6 +6,7 @@ import { Globals, Global } from "./types";
 import { loadGlobals, registerGlobals } from "./utils/utils";
 import Router from "./core/Router";
 import { getUserInfo } from "./controllers/auth";
+import { getChats } from "./controllers/chat";
 
 const Components: Globals = import.meta.glob("./components/**/*.ts", {
   eager: true,
@@ -25,20 +26,24 @@ registerGlobals(partials);
 registerGlobals(components);
 registerGlobals(pages);
 
-Handlebars.registerHelper("image", (options) => {
-  const attrs = Object.keys(options.hash)
-    .map((key) => {
-      if (key === "src") {
-        const imgUrl = new URL(imageUrl + options.hash[key], import.meta.url)
-          .href;
-        return key + '="' + imgUrl + '"';
-      }
-      return key + '="' + options.hash[key] + '"';
-    })
-    .join(" ");
+// Handlebars.registerHelper("image", (options) => {
+//   const attrs = Object.keys(options.hash)
+//     .map((key) => {
+//       if (key === "src") {
+//         const imgUrl = new URL(imageUrl + options.hash[key], import.meta.url)
+//           .href;
+//         return key + '="' + imgUrl + '"';
+//       }
+//       return key + '="' + options.hash[key] + '"';
+//     })
+//     .join(" ");
 
-  return "<img " + attrs + ">" + "</>";
-});
+//   return "<img " + attrs + ">" + "</>";
+// });
+
+// Handlebars.registerHelper("ternary", (cond, v1, v2) => {
+//   return cond ? v1 : v2;
+// });
 
 export enum Routes {
   Index = "/",
@@ -78,6 +83,16 @@ window.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  window.store.set({ user: currentUser });
+  const chats = await getChats();
+  console.log(currentUser.avatar);
+  window.store.set({
+    user: {
+      ...currentUser,
+      avatar: currentUser.avatar
+        ? `https://ya-praktikum.tech/api/v2/resources${currentUser.avatar}`
+        : null,
+    },
+    chats,
+  });
   Router.start();
 });

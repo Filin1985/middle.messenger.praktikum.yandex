@@ -13,6 +13,14 @@ export default class UserApi extends API {
   async changePassword(data: PasswordData): Promise<void | ApiError> {
     return this.http.put<void>("/password", { data });
   }
+
+  async changeAvatar(data: FormData): Promise<UserData | ApiError> {
+    return this.http.put<UserData>("/profile/avatar", { data });
+  }
+
+  async searchUsers(data: { login: string }): Promise<UserData[] | ApiError> {
+    return this.http.post<UserData[]>("/search", { data });
+  }
 }
 
 export const userApi = new UserApi();

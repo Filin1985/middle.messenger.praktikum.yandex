@@ -3,7 +3,7 @@ export type SignupData = {
   second_name: string;
   login: string;
   email: string;
-  password: string;
+  password?: string;
   phone: string;
 };
 
@@ -11,7 +11,7 @@ export type LoginData = Pick<SignupData, "login" | "password">;
 export type UserData = SignupData & {
   id: string;
   display_name: string;
-  avatar: "string";
+  avatar: string | null;
 };
 
 export type EditUserData = Omit<SignupData, "password" | "avatar"> & {

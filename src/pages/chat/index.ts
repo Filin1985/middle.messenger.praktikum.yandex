@@ -1,9 +1,9 @@
 import Block from "../../core/Block";
 import ChatTemplate from "./chat.hbs?raw";
-import { chatData } from "../../data/chat";
 import { InputSearch } from "../../components";
+import { connect } from "../../utils/connect";
 
-export class ChatPage extends Block {
+class Chat extends Block {
   constructor() {
     super({
       onClick: (event: Event | undefined) => {
@@ -18,12 +18,11 @@ export class ChatPage extends Block {
         console.log(dataInputs);
       },
     });
-    this.setProps({
-      chats: [...chatData],
-    });
   }
 
   protected render(): string {
     return ChatTemplate;
   }
 }
+
+export const ChatPage = connect(({ chats }) => ({ chats }))(Chat);

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ApiError, UserData } from "../api/types";
+import { ApiError, ChatsResponse, UserData } from "../api/types";
 import EventBus from "./EventBus";
 
 export enum StoreEvents {
@@ -8,9 +8,9 @@ export enum StoreEvents {
 
 export type State = {
   user: UserData | null | ApiError;
-  chats: ChatInfo[];
+  chats: ChatsResponse[];
   messages: Record<number, Message[]>;
-  chatsUsers: Record<number, User[]>;
+  searchedUsersChats: UserData[];
   selectedChat?: number;
 };
 
@@ -18,7 +18,7 @@ const initialState = {
   user: null,
   chats: [],
   messages: {},
-  chatsUsers: {},
+  searchedUsersChats: [],
   selectedChat: 0,
 };
 
@@ -27,7 +27,6 @@ export class Store<State extends Record<string, any>> extends EventBus {
 
   constructor(defaultState: State) {
     super();
-
     this.state = defaultState;
     this.set(defaultState);
   }
@@ -37,11 +36,8 @@ export class Store<State extends Record<string, any>> extends EventBus {
   }
 
   public set(nextState: Partial<State>) {
-    console.log(nextState);
     const prevState = { ...this.state };
-
     this.state = { ...this.state, ...nextState };
-
     this.emit(StoreEvents.Updated, prevState, nextState);
   }
 }

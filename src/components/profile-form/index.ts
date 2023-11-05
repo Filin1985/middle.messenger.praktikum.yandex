@@ -37,6 +37,7 @@ export class ProfileForm extends Block {
   }
 
   protected render(): string {
+    console.log(this.props.user);
     return ProfileFormTemplate;
   }
 }
