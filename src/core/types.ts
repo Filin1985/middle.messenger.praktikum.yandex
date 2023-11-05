@@ -8,13 +8,22 @@ export type HttpProps = {
   request: (arg0: string, arg1: Options) => void;
 };
 
+export enum METHODS {
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  DELETE = "DELETE",
+}
+
 export type Options = {
-  headers?: [string, string];
-  method: string;
-  data?: [string, string][];
+  method: METHODS;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data?: Record<string | symbol, any> | FormData;
+  headers?: Record<string, string>;
   timeout?: number;
   retries?: number;
 };
+export type OptionsOmitMethod = Omit<Options, "method">;
 
 export type Props = Record<string | symbol, unknown>;
 export type Children = Record<string, Block>;

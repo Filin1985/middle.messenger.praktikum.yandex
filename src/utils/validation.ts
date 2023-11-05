@@ -24,11 +24,11 @@ export const validator = {
     }
 
     if (!value.match(/(?=.*[A-Z])/)) {
-      return "Login should have at least one uppercase letter";
+      return "Password should have at least one uppercase letter";
     }
 
     if (!value.match(/(?=.*[0-9])/)) {
-      return "Login should have at least one number ";
+      return "Password should have at least one number ";
     }
 
     return "";

@@ -1,68 +1,106 @@
-import { Options, HttpProps } from "./types";
+import { Options, OptionsOmitMethod, METHODS } from "./types";
 
-const METHODS = {
-  GET: "GET",
-  POST: "POST",
-  PUT: "PUT",
-  DELETE: "DELETE",
-};
+class HTTP {
+  protected apiUrl: string = "";
 
-type HTTPMethod = (url: string, options: Options) => Promise<unknown>;
+  constructor(apiPath: string = "") {
+    this.apiUrl = `https://ya-praktikum.tech/api/v2${apiPath}`;
+  }
 
-class HTTP implements HttpProps {
-  get: HTTPMethod = (url, options) => {
-    let resUrl = url;
-    const { data } = options;
+  get = <ServerResponse>(
+    url: string,
+    options: OptionsOmitMethod = {}
+  ): Promise<ServerResponse> =>
+    this.request<ServerResponse>(`${this.apiUrl}${url}`, {
+      ...options,
+      method: METHODS.GET,
+    });
 
-    if (data) {
-      resUrl = queryStringify(data);
-    }
+  post = <ServerResponse>(
+    url: string,
+    options: OptionsOmitMethod = {}
+  ): Promise<ServerResponse> =>
+    this.request<ServerResponse>(`${this.apiUrl}${url}`, {
+      ...options,
+      method: METHODS.POST,
+    });
 
-    return this.request(resUrl, { ...options, method: METHODS.GET });
-  };
+  put = <ServerResponse>(
+    url: string,
+    options: OptionsOmitMethod = {}
+  ): Promise<ServerResponse> =>
+    this.request<ServerResponse>(`${this.apiUrl}${url}`, {
+      ...options,
+      method: METHODS.PUT,
+    });
 
-  post: HTTPMethod = (url, options) => {
-    return this.request(url, { ...options, method: METHODS.POST });
-  };
+  delete = <ServerResponse>(
+    url: string,
+    options: OptionsOmitMethod = {}
+  ): Promise<ServerResponse> =>
+    this.request<ServerResponse>(`${this.apiUrl}${url}`, {
+      ...options,
+      method: METHODS.DELETE,
+    });
 
-  put: HTTPMethod = (url, options) => {
-    return this.request(url, { ...options, method: METHODS.PUT });
-  };
-
-  delete: HTTPMethod = (url, options) => {
-    return this.request(url, { ...options, method: METHODS.DELETE });
-  };
-
-  request: HTTPMethod = (url, options) => {
-    const { method, headers, data, timeout = 5000 } = options;
+  request = async <ServerResponse>(
+    url: string,
+    options: Options
+  ): Promise<ServerResponse> => {
+    const { method, headers = {}, data, timeout = 5000 } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
-      if (headers) xhr.setRequestHeader(...headers);
+
+      if (method === METHODS.GET && data) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        url += queryStringify(data as Record<string, any>);
+      }
+
+      xhr.open(method || METHODS.GET, url);
+
+      if (data instanceof FormData) {
+        xhr.setRequestHeader("Accept", "application/json");
+      } else {
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      }
+
+      Object.keys(headers).forEach((key) => {
+        xhr.setRequestHeader(key, headers[key]);
+      });
 
       xhr.onload = () => {
-        resolve(xhr);
+        if (xhr.status !== 200) {
+          reject(
+            new Error(
+              `Error ${xhr.status}: ${xhr?.response?.reason || xhr.statusText}`
+            )
+          );
+        } else {
+          resolve(xhr.response);
+        }
       };
 
       xhr.onabort = reject;
       xhr.onerror = reject;
       xhr.ontimeout = reject;
+      xhr.timeout = timeout;
+      xhr.withCredentials = true;
+      xhr.responseType = "json";
 
-      if (method === METHODS.GET) {
+      if (method === METHODS.GET || !data) {
         xhr.send();
+      } else if (data instanceof FormData) {
+        xhr.send(data);
       } else {
         xhr.send(JSON.stringify(data));
       }
-
-      setTimeout(() => {
-        xhr.abort();
-      }, timeout);
     });
   };
 }
 
-function queryStringify(data: [string, string][]): string {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function queryStringify(data: Record<string, any>): string | never {
   let result = "?";
 
   for (const [key, value] of Object.entries(data)) {

@@ -3,6 +3,10 @@ import EventBus from "./EventBus";
 import Handlebars from "handlebars";
 import { Props, Children } from "./types";
 
+export type BlockType = {
+  new (childrenAndProps: Props): Block;
+};
+
 export default class Block {
   static EVENTS = {
     INIT: "init",

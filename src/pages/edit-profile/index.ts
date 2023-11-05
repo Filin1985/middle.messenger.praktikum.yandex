@@ -1,13 +1,12 @@
-import { userData } from "../../data/user";
 import Block from "../../core/Block";
 import EditProfileTemplate from "./editProfile.hbs?raw";
 import { Props } from "../../core/types";
+import { connect } from "../../utils/connect";
 
-export class EditProfilePage extends Block {
+class EditProfile extends Block {
   constructor(props: Props) {
     super({
       ...props,
-      user: userData,
       isEdit: true,
     });
   }
@@ -16,3 +15,5 @@ export class EditProfilePage extends Block {
     return EditProfileTemplate;
   }
 }
+
+export const EditProfilePage = connect(({ user }) => ({ user }))(EditProfile);

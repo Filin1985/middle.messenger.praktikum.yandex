@@ -1,9 +1,11 @@
 import "./style/index.scss";
 import Handlebars from "handlebars";
 import { imageUrl } from "./config";
-import Block from "./core/Block";
+import { BlockType } from "./core/Block";
 import { Globals, Global } from "./types";
 import { loadGlobals, registerGlobals } from "./utils/utils";
+import Router from "./core/Router";
+import { getUserInfo } from "./controllers/auth";
 
 const Components: Globals = import.meta.glob("./components/**/*.ts", {
   eager: true,
@@ -23,50 +25,6 @@ registerGlobals(partials);
 registerGlobals(components);
 registerGlobals(pages);
 
-const navigate = (page: string) => {
-  if (pages[page]) {
-    const app = document.getElementById("app");
-    if (app) {
-      const Component = pages[page] as unknown as typeof Block;
-      if (typeof Component !== "string") {
-        const component = new Component({});
-        const content = component.getContent();
-        if (content !== null) {
-          app.innerHTML = "";
-          app.append(content);
-        }
-      } else {
-        const content = Handlebars.compile(pages[page])({});
-        if (content !== null) {
-          app.innerHTML = content;
-        }
-      }
-    }
-  }
-};
-
-// Login
-// Signup
-// NotFound
-// ServerError
-// ChatPage
-// ProfilePage
-// EditProfilePage
-// EditPasswordPage
-// ChangeAvatarPage
-
-document.addEventListener("DOMContentLoaded", () => navigate("Login"));
-
-document.addEventListener("click", (e) => {
-  const target: HTMLElement = e.target as HTMLElement;
-  const page = target.getAttribute("page");
-  if (page) {
-    navigate(page);
-    e.preventDefault();
-    e.stopImmediatePropagation();
-  }
-});
-
 Handlebars.registerHelper("image", (options) => {
   const attrs = Object.keys(options.hash)
     .map((key) => {
@@ -80,4 +38,46 @@ Handlebars.registerHelper("image", (options) => {
     .join(" ");
 
   return "<img " + attrs + ">" + "</>";
+});
+
+export enum Routes {
+  Index = "/",
+  Login = "/login",
+  Signup = "/signup",
+  Profile = "/profile",
+  EditProfile = "/edit-profile",
+  EditPassword = "/edit-password",
+  ChangeAvatar = "/change-avatar",
+  ChatPage = "/messenger",
+  NotFound = "/404",
+  ServerError = "/500",
+}
+
+Router.use(Routes.Index, pages.Login as unknown as BlockType)
+  .use(Routes.Signup, pages.Signup as unknown as BlockType)
+  .use(Routes.Login, pages.Login as unknown as BlockType)
+  .use(Routes.Profile, pages.ProfilePage as unknown as BlockType)
+  .use(Routes.EditProfile, pages.EditProfilePage as unknown as BlockType)
+  .use(Routes.EditPassword, pages.EditPasswordPage as unknown as BlockType)
+  .use(Routes.ChangeAvatar, pages.ChangeAvatarPage as unknown as BlockType)
+  .use(Routes.ChatPage, pages.ChatPage as unknown as BlockType)
+  .use(Routes.NotFound, pages.NotFound as unknown as BlockType)
+  .use(Routes.ServerError, pages.ServerError as unknown as BlockType);
+
+window.addEventListener("DOMContentLoaded", async () => {
+  const { pathname } = window.location;
+  const pathExists = Object.values(Routes).map((p) => p.toString());
+
+  if (!pathExists.includes(pathname)) Router.go(Routes.NotFound);
+
+  let currentUser = null;
+  try {
+    currentUser = await getUserInfo();
+  } catch (error) {
+    Router.go("/");
+    return;
+  }
+
+  window.store.set({ user: currentUser });
+  Router.start();
 });
