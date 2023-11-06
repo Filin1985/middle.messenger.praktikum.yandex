@@ -47,4 +47,11 @@
     color: var(--secondary);
     margin-top: 70px;
   }
+
+  &__add {
+    @include size(120px, 25px, 50px);
+    border-radius: 50px;
+    background-color: var(--primary);
+    font-size: 14px;
+  }
 }

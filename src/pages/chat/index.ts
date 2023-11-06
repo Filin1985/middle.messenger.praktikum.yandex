@@ -2,10 +2,13 @@ import Block from "../../core/Block";
 import ChatTemplate from "./chat.hbs?raw";
 import { InputSearch } from "../../components";
 import { connect } from "../../utils/connect";
+import Router from "../../core/Router";
+import { Props } from "../../core/types";
 
 class Chat extends Block {
-  constructor() {
+  constructor(props: Props) {
     super({
+      ...props,
       onClick: (event: Event | undefined) => {
         if (!event) return;
         event.preventDefault();
@@ -17,6 +20,11 @@ class Chat extends Block {
         });
         console.log(dataInputs);
       },
+      onAddNewChat: (event: Event | undefined) => {
+        if (!event) return;
+        event.preventDefault();
+        Router.go("/create-chat");
+      },
     });
   }
 
@@ -25,4 +33,7 @@ class Chat extends Block {
   }
 }
 
-export const ChatPage = connect(({ chats }) => ({ chats }))(Chat);
+export const ChatPage = connect(({ chats, selectedChat }) => ({
+  chats,
+  selectedChat,
+}))(Chat);

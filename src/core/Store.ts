@@ -1,5 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ApiError, ChatsResponse, UserData } from "../api/types";
+import {
+  ApiError,
+  ChatsResponse,
+  MessageData,
+  UserData,
+  UserChatData,
+} from "../api/types";
 import EventBus from "./EventBus";
 
 export enum StoreEvents {
@@ -9,17 +15,19 @@ export enum StoreEvents {
 export type State = {
   user: UserData | null | ApiError;
   chats: ChatsResponse[];
-  messages: Record<number, Message[]>;
   searchedUsersChats: UserData[];
-  selectedChat?: number;
+  selectedChat?: number | null;
+  selectedChatMessages: MessageData[];
+  selectedChatUsers: UserChatData[];
 };
 
 const initialState = {
   user: null,
   chats: [],
-  messages: {},
+  selectedChatMessages: [],
   searchedUsersChats: [],
-  selectedChat: 0,
+  selectedChat: null,
+  selectedChatUsers: [],
 };
 
 export class Store<State extends Record<string, any>> extends EventBus {

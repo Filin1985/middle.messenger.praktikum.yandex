@@ -5,21 +5,22 @@
   <fieldset class="auth-form__set">
     <label>
       <input
-        id="avatar"
-        type="file"
-        name="avatar"
-        class="file__input"
-        accept="image/png, image/jpeg"
+      {{#if class}} class="{{class}}"{{/if}}
+      {{#if id}} id="{{id}}"{{/if}}
+      {{#if name}} name="{{name}}"{{/if}}
+      {{#if style}} style="{{style}}"{{/if}}
+      {{#if type}} type="{{type}}"{{/if}}
+      {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
+      {{#if value}} value="{{value}}"{{/if}}
+      {{#if accept}} accept="{{accept}}"{{/if}}
       />
-      <span class="file__span">Choose file from computer</span>
+      <span class="file__span">{{label}}</span>
     </label>
     <div class="avatar-form__footer">
       {{{Button
-        onSubmit=onSubmitAvatar
+        onSubmit=onSubmit
         type="save"
-        text="Change"
-        route="/profile"
-        page="ProfilePage"
+        text=text
       }}}
     </div>
   </fieldset>

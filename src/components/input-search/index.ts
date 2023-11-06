@@ -6,6 +6,7 @@ export class InputSearch extends Block {
   constructor(props: Props) {
     super({
       ...props,
+      onInput: props.onInput,
     });
   }
 

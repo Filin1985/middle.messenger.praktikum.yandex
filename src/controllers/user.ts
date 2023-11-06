@@ -13,7 +13,7 @@ export const editProfileData = async (data: EditUserData) => {
           : null,
       },
     });
-    Router.go("/profile");
+    Router.go("/settings");
   } catch (error: unknown) {
     throw new Error((error as ApiError).reason);
   }
@@ -22,7 +22,7 @@ export const editProfileData = async (data: EditUserData) => {
 export const editPasswordData = async (data: PasswordData) => {
   try {
     await userApi.changePassword(data);
-    Router.go("/profile");
+    Router.go("/settings");
   } catch (error: unknown) {
     throw new Error((error as ApiError).reason);
   }
@@ -42,7 +42,7 @@ export const editAvatar = async (file: File) => {
       },
     });
     console.log(window.store);
-    Router.go("/profile");
+    Router.go("/settings");
   } catch (error: unknown) {
     throw new Error((error as ApiError).reason);
   }
@@ -54,6 +54,15 @@ export const searchUsers = async (data: { login: string }) => {
     window.store.set({
       searchedUsersChats: response,
     });
+  } catch (error: unknown) {
+    throw new Error((error as ApiError).reason);
+  }
+};
+
+export const getUserById = async (id: number) => {
+  try {
+    const response = await userApi.getUserById(id);
+    return response;
   } catch (error: unknown) {
     throw new Error((error as ApiError).reason);
   }

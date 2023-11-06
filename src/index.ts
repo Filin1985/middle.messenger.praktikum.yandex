@@ -1,6 +1,4 @@
 import "./style/index.scss";
-import Handlebars from "handlebars";
-import { imageUrl } from "./config";
 import { BlockType } from "./core/Block";
 import { Globals, Global } from "./types";
 import { loadGlobals, registerGlobals } from "./utils/utils";
@@ -26,33 +24,15 @@ registerGlobals(partials);
 registerGlobals(components);
 registerGlobals(pages);
 
-// Handlebars.registerHelper("image", (options) => {
-//   const attrs = Object.keys(options.hash)
-//     .map((key) => {
-//       if (key === "src") {
-//         const imgUrl = new URL(imageUrl + options.hash[key], import.meta.url)
-//           .href;
-//         return key + '="' + imgUrl + '"';
-//       }
-//       return key + '="' + options.hash[key] + '"';
-//     })
-//     .join(" ");
-
-//   return "<img " + attrs + ">" + "</>";
-// });
-
-// Handlebars.registerHelper("ternary", (cond, v1, v2) => {
-//   return cond ? v1 : v2;
-// });
-
 export enum Routes {
   Index = "/",
   Login = "/login",
   Signup = "/signup",
-  Profile = "/profile",
+  Profile = "/settings",
   EditProfile = "/edit-profile",
   EditPassword = "/edit-password",
   ChangeAvatar = "/change-avatar",
+  CreateChat = "/create-chat",
   ChatPage = "/messenger",
   NotFound = "/404",
   ServerError = "/500",
@@ -65,6 +45,7 @@ Router.use(Routes.Index, pages.Login as unknown as BlockType)
   .use(Routes.EditProfile, pages.EditProfilePage as unknown as BlockType)
   .use(Routes.EditPassword, pages.EditPasswordPage as unknown as BlockType)
   .use(Routes.ChangeAvatar, pages.ChangeAvatarPage as unknown as BlockType)
+  .use(Routes.CreateChat, pages.CreateNewChartPage as unknown as BlockType)
   .use(Routes.ChatPage, pages.ChatPage as unknown as BlockType)
   .use(Routes.NotFound, pages.NotFound as unknown as BlockType)
   .use(Routes.ServerError, pages.ServerError as unknown as BlockType);

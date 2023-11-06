@@ -10,6 +10,11 @@
   padding: 21px 10px 0;
   gap: 20px;
 
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+
   &__sidebar {
     display: flex;
     flex-direction: column;

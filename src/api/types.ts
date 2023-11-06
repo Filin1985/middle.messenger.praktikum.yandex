@@ -9,7 +9,7 @@ export type SignupData = {
 
 export type LoginData = Pick<SignupData, "login" | "password">;
 export type UserData = SignupData & {
-  id: string;
+  id: number;
   display_name: string;
   avatar: string | null;
 };
@@ -44,4 +44,30 @@ type LastMessage = {
 export type PasswordData = {
   oldPassword: string;
   newPassword: string;
+};
+
+export type DeletedChat = {
+  userId: number;
+  result: {
+    id: number;
+    title: string;
+    avatar: string;
+    created_by: number;
+  };
+};
+
+export type UserChatData = Omit<UserData, "password" | "phone" | "email"> & {
+  role: string;
+};
+
+export type AddDeleteUsersToChatData = {
+  users: number[];
+  chatId: number;
+};
+
+export type MessageData = {
+  user_id: number;
+  content: string;
+  time: string;
+  type: string;
 };

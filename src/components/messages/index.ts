@@ -1,11 +1,12 @@
 import { InputMessage } from "..";
 import Block from "../../core/Block";
-import { messageData } from "../../data/message";
+import { Props } from "../../core/types";
 import MessagesTemplate from "./messages.hbs?raw";
 
 export class Messages extends Block {
-  constructor() {
+  constructor(props: Props) {
     super({
+      ...props,
       onClick: (event: Event | undefined) => {
         if (!event) return;
         event.preventDefault();
@@ -18,12 +19,10 @@ export class Messages extends Block {
         console.log(dataInputs);
       },
     });
-    this.setProps({
-      messages: [...messageData],
-    });
   }
 
   protected render(): string {
+    console.log(this.props);
     return MessagesTemplate;
   }
 }

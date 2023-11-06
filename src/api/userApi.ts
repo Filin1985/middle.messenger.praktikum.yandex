@@ -21,6 +21,10 @@ export default class UserApi extends API {
   async searchUsers(data: { login: string }): Promise<UserData[] | ApiError> {
     return this.http.post<UserData[]>("/search", { data });
   }
+
+  async getUserById(id: number): Promise<UserData | ApiError> {
+    return this.http.get<UserData>(`/${id}`);
+  }
 }
 
 export const userApi = new UserApi();
