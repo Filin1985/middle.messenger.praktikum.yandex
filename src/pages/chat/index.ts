@@ -4,6 +4,7 @@ import { InputSearch } from "../../components";
 import { connect } from "../../utils/connect";
 import Router from "../../core/Router";
 import { Props } from "../../core/types";
+import { setChat } from "../../controllers/chat";
 
 class Chat extends Block {
   constructor(props: Props) {
@@ -25,6 +26,9 @@ class Chat extends Block {
         event.preventDefault();
         Router.go("/create-chat");
       },
+      onSetSelected: (id: number) => {
+        setChat(id);
+      },
     });
   }
 
@@ -33,7 +37,10 @@ class Chat extends Block {
   }
 }
 
-export const ChatPage = connect(({ chats, selectedChat }) => ({
-  chats,
-  selectedChat,
-}))(Chat);
+export const ChatPage = connect(
+  ({ chats, selectedChat, isAddUserModalOpen }) => ({
+    chats,
+    selectedChat,
+    isAddUserModalOpen,
+  })
+)(Chat);

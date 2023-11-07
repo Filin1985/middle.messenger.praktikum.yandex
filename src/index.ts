@@ -33,6 +33,7 @@ export enum Routes {
   EditPassword = "/edit-password",
   ChangeAvatar = "/change-avatar",
   CreateChat = "/create-chat",
+  AddUser = "/add-user",
   ChatPage = "/messenger",
   NotFound = "/404",
   ServerError = "/500",
@@ -46,6 +47,7 @@ Router.use(Routes.Index, pages.Login as unknown as BlockType)
   .use(Routes.EditPassword, pages.EditPasswordPage as unknown as BlockType)
   .use(Routes.ChangeAvatar, pages.ChangeAvatarPage as unknown as BlockType)
   .use(Routes.CreateChat, pages.CreateNewChartPage as unknown as BlockType)
+  .use(Routes.AddUser, pages.AddUserPage as unknown as BlockType)
   .use(Routes.ChatPage, pages.ChatPage as unknown as BlockType)
   .use(Routes.NotFound, pages.NotFound as unknown as BlockType)
   .use(Routes.ServerError, pages.ServerError as unknown as BlockType);
@@ -65,7 +67,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   }
 
   const chats = await getChats();
-  console.log(currentUser.avatar);
   window.store.set({
     user: {
       ...currentUser,

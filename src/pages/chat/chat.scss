@@ -53,6 +53,10 @@
     &:hover {
       cursor: pointer;
     }
+
+    &_active {
+      background-color: var(--secondary);
+    }
   }
 
   &__person {
@@ -96,11 +100,18 @@
     padding: 4px;
     margin: 0;
   }
-}
 
-.avatar {
-  width: 47px;
-  height: 47px;
-  border-radius: 50px;
-  grid-area: avatar;
+  &__item {
+    &:hover {
+      background-color: var(--primary);
+    }
+  }
+
+  &__avatar {
+    margin-left: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    grid-area: avatar;
+  }
 }

@@ -3,3 +3,17 @@
   z-index: 1;
   background-color: var(--background);
 }
+
+.modal__button {
+  display: flex;
+  max-width: 300px;
+  gap: 5px;
+}
+
+.modal__container {
+  display: none;
+
+  &_open {
+    display: block;
+  }
+}

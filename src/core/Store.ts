@@ -19,6 +19,7 @@ export type State = {
   selectedChat?: number | null;
   selectedChatMessages: MessageData[];
   selectedChatUsers: UserChatData[];
+  isAddUserModalOpen: boolean;
 };
 
 const initialState = {
@@ -28,6 +29,7 @@ const initialState = {
   searchedUsersChats: [],
   selectedChat: null,
   selectedChatUsers: [],
+  isAddUserModalOpen: false,
 };
 
 export class Store<State extends Record<string, any>> extends EventBus {

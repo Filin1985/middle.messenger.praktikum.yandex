@@ -40,8 +40,8 @@ export default class ChatApi extends API {
     return this.http.delete<void>("/users", { data });
   }
 
-  async getUserToken(chatId: number): Promise<{ token: string }[] | ApiError> {
-    return this.http.post<{ token: string }[]>(`/token/${chatId}`);
+  async getUserToken(chatId: number): Promise<{ token: string } | ApiError> {
+    return this.http.post<{ token: string }>(`/token/${chatId}`);
   }
 }
 

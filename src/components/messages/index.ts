@@ -1,9 +1,12 @@
 import { InputMessage } from "..";
+import { addUserToChat } from "../../controllers/chat";
 import Block from "../../core/Block";
+import Router from "../../core/Router";
 import { Props } from "../../core/types";
+import { connect } from "../../utils/connect";
 import MessagesTemplate from "./messages.hbs?raw";
 
-export class Messages extends Block {
+export class MessagesComponent extends Block {
   constructor(props: Props) {
     super({
       ...props,
@@ -18,11 +21,24 @@ export class Messages extends Block {
         });
         console.log(dataInputs);
       },
+      onAddUser: () => {
+        window.store.set({ isAddUserModalOpen: true });
+      },
+    });
+    this.setProps({
+      usersLength: this.props.selectedChatUsers.length > 1,
     });
   }
 
   protected render(): string {
-    console.log(this.props);
     return MessagesTemplate;
   }
 }
+
+export const Messages = connect(
+  ({ selectedChatMessages, selectedChat, selectedChatUsers }) => ({
+    selectedChatMessages,
+    selectedChat,
+    selectedChatUsers,
+  })
+)(MessagesComponent);

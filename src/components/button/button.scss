@@ -48,6 +48,13 @@
     margin-top: 70px;
   }
 
+  &__close {
+    @include size(280px, 37px, 8px);
+    background: var(--error);
+    color: var(--text);
+    margin-top: 70px;
+  }
+
   &__add {
     @include size(120px, 25px, 50px);
     border-radius: 50px;

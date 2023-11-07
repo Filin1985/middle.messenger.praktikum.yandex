@@ -6,12 +6,27 @@
       }}{{/image}}
       <h3 class="messages__name">Андрей</h3>
     </div>
-    {{{Button type="func"}}}
+    <div>
+      {{{Button type="add" text="Add User" onSubmit=onAddUser}}}
+      {{{Button type="add" text="Delete User" onClick=onDeleteUser}}}
+    </div>
   </div>
   <ul class="messages__list">
-    {{#each messages as |message|}}
-      {{{Message message=message owner=message.current_user}}}
-    {{/each}}
+    {{#if selectedChat}}
+      {{#if usersLength}}
+        {{#each messages as |message|}}
+          {{{Message message=message owner=message.current_user}}}
+        {{/each}}
+      {{else}}
+        <div class="messages__new">
+          <h1>Add a user to start your conversation</h1>
+        </div>
+      {{/if}}
+    {{else}}
+      <div class="messages__new">
+        <h1>Select chat from the list or add new one</h1>
+      </div>
+    {{/if}}
   </ul>
   {{{InputMessage
     validateType="messageValidation"

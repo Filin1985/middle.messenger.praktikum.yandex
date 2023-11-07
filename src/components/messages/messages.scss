@@ -42,4 +42,11 @@
     display: flex;
     gap: 10px;
   }
+
+  &__new {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+  }
 }

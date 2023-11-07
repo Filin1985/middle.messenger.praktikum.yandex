@@ -14,3 +14,5 @@ export { Message } from "./message";
 export { Messages } from "./messages";
 export { EditForm } from "./edit-form";
 export { ProfileForm } from "./profile-form";
+export { ModalAddUser } from "./modal-add-user";
+export { ModalChangeAvatar } from "./modal-change-avatar";

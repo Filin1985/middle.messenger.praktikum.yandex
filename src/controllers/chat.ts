@@ -47,8 +47,8 @@ export const getUserToken = async (chatId: number) => {
   try {
     const response = (await chatApi.getUserToken(chatId)) as {
       token: string;
-    }[];
-    return response[0];
+    };
+    return response;
   } catch (error: unknown) {
     throw new Error((error as ApiError).reason);
   }

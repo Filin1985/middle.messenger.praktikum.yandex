@@ -16,11 +16,16 @@
       />
       <span class="file__span">{{label}}</span>
     </label>
-    <div class="avatar-form__footer">
+    <div class="modal__button">
       {{{Button
-        onSubmit=onSubmit
+        onSubmit=onAddNewUser
         type="save"
         text=text
+      }}}
+      {{{Button
+        onSubmit=onCloseModal
+        type="close"
+        text='Discard'
       }}}
     </div>
   </fieldset>

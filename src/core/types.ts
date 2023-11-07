@@ -24,6 +24,13 @@ export type Options = {
   retries?: number;
 };
 export type OptionsOmitMethod = Omit<Options, "method">;
-
-export type Props = Record<string | symbol, unknown>;
+type Events = {
+  [key: string | symbol]: (e: Event) => void;
+};
+export type Props = {
+  events?: Events;
+  parent?: Block | undefined;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string | symbol]: any;
+};
 export type Children = Record<string, Block>;

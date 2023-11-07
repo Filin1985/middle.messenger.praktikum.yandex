@@ -15,7 +15,6 @@ class ChangeAvatar extends Block {
           this.element?.querySelector("#avatar") as
             | HTMLInputElement
             | undefined;
-        console.log(loadAvatar?.files);
         if (loadAvatar?.files) {
           this.onEditAvatar(loadAvatar.files[0]);
         }
@@ -27,7 +26,6 @@ class ChangeAvatar extends Block {
   }
 
   onEditAvatar(file: File) {
-    console.log(file);
     editAvatar(file);
   }
 
@@ -36,4 +34,6 @@ class ChangeAvatar extends Block {
   }
 }
 
-export const ChangeAvatarPage = connect(({ user }) => ({ user }))(ChangeAvatar);
+export const ChangeAvatarPage = connect(({ user, chats }) => ({ user, chats }))(
+  ChangeAvatar
+);
