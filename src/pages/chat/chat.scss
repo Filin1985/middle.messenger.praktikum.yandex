@@ -52,6 +52,7 @@
 
     &:hover {
       cursor: pointer;
+      background-color: var(--primary);
     }
 
     &_active {
@@ -99,12 +100,6 @@
     text-align: center;
     padding: 4px;
     margin: 0;
-  }
-
-  &__item {
-    &:hover {
-      background-color: var(--primary);
-    }
   }
 
   &__avatar {
