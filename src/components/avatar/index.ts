@@ -4,9 +4,15 @@ import AvatarTemplate from "./avatar.hbs?raw";
 
 export class Avatar extends Block {
   constructor(props: Props) {
-    super(props);
-    this.setProps({
-      img: "person_3.png",
+    super({
+      ...props,
+      onOpenChangeModal: (event: Event | undefined) => {
+        if (!event) return;
+        event.preventDefault();
+        window.store.set({
+          isChangeAvatarModalOpen: true,
+        });
+      },
     });
   }
 

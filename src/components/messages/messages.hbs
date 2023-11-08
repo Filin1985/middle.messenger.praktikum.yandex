@@ -1,10 +1,12 @@
 <div class="messages">
   <div class="messages__header">
     <div class="messages__person">
-      {{#image
-        src="person_2.png" alt="Avatar" class="avatar avatar_min"
-      }}{{/image}}
-      <h3 class="messages__name">Андрей</h3>
+      {{#if selectedChatUsers}}
+        {{#each selectedChatUsers as |user|}}
+          <img src={{user.avatar}} alt="Avatar" class="chat__avatar" />
+          <h3 class="messages__name">{{user.login}}</h3>
+        {{/each}}
+      {{/if}}
     </div>
     <div>
       {{{Button type="add" text="Add User" onSubmit=onAddUser}}}
@@ -14,9 +16,15 @@
   <ul class="messages__list">
     {{#if selectedChat}}
       {{#if usersLength}}
-        {{#each messages as |message|}}
-          {{{Message message=message owner=message.current_user}}}
-        {{/each}}
+        {{#if selectedChatMessages}}
+          {{#each selectedChatMessages as |message|}}
+            {{{Message message=message owner=message.current_user}}}
+          {{/each}}
+        {{else}}
+          <div class="messages__new">
+            <h1>Write your first message</h1>
+          </div>
+        {{/if}}
       {{else}}
         <div class="messages__new">
           <h1>Add a user to start your conversation</h1>
@@ -32,6 +40,6 @@
     validateType="messageValidation"
     name="message"
     ref="message"
-    onClick=onClick
+    onClick=onSend
   }}}
 </div>

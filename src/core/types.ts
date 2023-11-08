@@ -34,3 +34,23 @@ export type Props = {
   [key: string | symbol]: any;
 };
 export type Children = Record<string, Block>;
+
+export type WebSocketData = {
+  userId: number;
+  chatId: number;
+  token: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  callbackMessages: (data: any) => void;
+};
+
+export type Message = {
+  content: unknown;
+  type: string;
+};
+
+export enum STATE {
+  OPEN,
+  CONNECTING,
+  CLOSING,
+  CLOSED,
+}

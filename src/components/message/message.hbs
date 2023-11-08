@@ -3,7 +3,7 @@
     {{#if file}}
         {{#image src=file.path alt='Image Message' class='message__image'}}{{/image}}
     {{else}}
-      <p class='message__text'>{{text}}</p>
+      <p class='message__text'>{{content}}</p>
     {{/if}}
     <div class='message__time'>
         {{#if owner}}

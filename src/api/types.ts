@@ -71,3 +71,8 @@ export type MessageData = {
   time: string;
   type: string;
 };
+
+export type Message = {
+  content: string;
+  type: string;
+};

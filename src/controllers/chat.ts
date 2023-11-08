@@ -80,7 +80,7 @@ export const deleteChat = async () => {
   }
 };
 
-export const sendMessage = async (message: number) => {
+export const sendMessage = async (message: string) => {
   try {
     const mess = {
       content: message,
@@ -100,7 +100,6 @@ export const addUserToChat = async (data: UserChatData) => {
         users: [data.id],
         chatId: selectedChat,
       });
-
       const newSelectedChatUsers = [...selectedChatUsers, data];
       window.store.set({ selectedChatUsers: newSelectedChatUsers });
     }

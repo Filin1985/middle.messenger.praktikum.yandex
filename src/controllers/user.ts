@@ -41,7 +41,6 @@ export const editAvatar = async (file: File) => {
           : null,
       },
     });
-    console.log(window.store);
     Router.go("/settings");
   } catch (error: unknown) {
     throw new Error((error as ApiError).reason);

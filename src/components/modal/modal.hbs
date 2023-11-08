@@ -3,6 +3,10 @@
     <h2 class="auth-form__title">{{title}}</h2>
   </div>
   <fieldset class="auth-form__set">
+    {{#if search}}
+      {{{InputSearch search=search onSubmit=onSubmit}}}
+      {{{Users users=searchedUsersChats}}}
+    {{else}}
     <label>
       <input
       {{#if class}} class="{{class}}"{{/if}}
@@ -16,9 +20,10 @@
       />
       <span class="file__span">{{label}}</span>
     </label>
+    {{/if}}
     <div class="modal__button">
       {{{Button
-        onSubmit=onAddNewUser
+        onSubmit=onSubmit
         type="save"
         text=text
       }}}

@@ -18,9 +18,9 @@
     margin-right: 6px;
   }
 
-  &__func {
+  &__plus {
     @include size(25px, 25px, 50px);
-    background: no-repeat url(../../assets/icons/dots.svg) center;
+    background: no-repeat url(../../assets/icons/add.svg) center;
     border-radius: 50px;
     background-color: var(--primary);
   }
@@ -60,5 +60,19 @@
     border-radius: 50px;
     background-color: var(--primary);
     font-size: 14px;
+  }
+
+  &__change {
+    @include size(130px, 130px, 50%);
+    top: 0;
+    left: 0;
+    position: absolute;
+    color: var(--text-form);
+    background-color: transparent;
+
+    &:hover {
+      background: no-repeat url(../../assets/icons/edit.svg) center;
+      background-color: var(--primary);
+    }
   }
 }

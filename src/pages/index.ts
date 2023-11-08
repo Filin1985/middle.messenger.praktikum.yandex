@@ -4,8 +4,6 @@ export { ChatPage } from "./chat";
 export { ProfilePage } from "./profile";
 export { EditProfilePage } from "./edit-profile";
 export { EditPasswordPage } from "./edit-password";
-export { ChangeAvatarPage } from "./change-avatar";
-export { CreateNewChartPage } from "./create-chat";
 export { AddUserPage } from "./add-user";
 export { Login } from "./login";
 export { Signup } from "./signup";

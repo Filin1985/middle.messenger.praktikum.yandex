@@ -1,60 +1,39 @@
+import { Message, STATE, WebSocketData } from "./types";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export type WebSocketProps = {
-  userId: number;
-  chatId: number;
-  token: string;
-  callbackMessages: (data: any) => void;
-};
-
-export type Message = {
-  content: unknown;
-  type: string;
-};
-
-enum STATE {
-  CONNECTING,
-  OPEN,
-  CLOSING,
-  CLOSED,
-}
-
 class Socket {
   private socket: WebSocket;
-
-  protected _baseUrl: string;
-
-  protected _chatsUrl: string;
-
-  protected timeoutId: number = 0;
-
+  protected timeout: number = 0;
   protected callbackMessages: (data: any) => void;
 
   chatId: number;
 
-  constructor({ userId, chatId, token, callbackMessages }: WebSocketProps) {
-    this._baseUrl = "wss://ya-praktikum.tech/ws";
-    this._chatsUrl = `${this._baseUrl}/chats`;
+  constructor({ userId, chatId, token, callbackMessages }: WebSocketData) {
     this.chatId = chatId;
     this.callbackMessages = callbackMessages;
     this.socket = new WebSocket(
-      `${this._chatsUrl}/${userId}/${chatId}/${token}`
+      `wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`
     );
-
-    this.socket.onerror = this.error;
-    this.socket.onclose = this.close.bind(this);
     this.socket.onmessage = this.message.bind(this);
     this.socket.onopen = this.open.bind(this);
-
-    this.timeoutId = 0;
+    this.socket.onclose = this.close.bind(this);
+    this.timeout = 0;
   }
 
-  public send(message: Message) {
+  send(message: Message) {
     this.socket.send(JSON.stringify(message));
   }
 
-  public open(event: Event) {
-    console.log("The connection is established", event);
-    this.sendPing();
+  protected ping() {
+    if (this.socket?.readyState === STATE.OPEN) {
+      this.send({ content: "ping", type: "ping" });
+      this.timeout = window.setTimeout(this.ping.bind(this), 15000);
+    }
+  }
+
+  open(event: Event) {
+    console.log("Connection is open", event);
+    this.ping();
     this.socket.send(
       JSON.stringify({
         content: "0",
@@ -63,37 +42,23 @@ class Socket {
     );
   }
 
-  public close(event: CloseEvent) {
-    if (event.wasClean) {
-      console.log("Connection closed cleanly");
-    } else {
-      console.log("Connection failure");
-    }
+  close(event: CloseEvent) {
+    event.wasClean
+      ? console.log("Connection is closed")
+      : console.log("Connection failed");
 
-    console.log(`Code: ${event.code} | Reason: ${event.reason}`);
+    console.log(`${event.code} - ${event.reason}`);
   }
 
-  public message(event: MessageEvent) {
+  message(event: MessageEvent) {
     const data = JSON.parse(event.data);
-
     if (data.type !== "user connected" && data.type !== "pong") {
       this.callbackMessages(data);
     }
   }
 
-  public error(event: Event) {
-    console.log("Error", event);
-  }
-
-  public closeConnect() {
-    this.socket?.close(1000, "The work is done");
-  }
-
-  protected sendPing() {
-    if (this.socket?.readyState === STATE.OPEN) {
-      this.send({ content: "ping", type: "ping" });
-      this.timeoutId = window.setTimeout(this.sendPing.bind(this), 20000);
-    }
+  closeConnect() {
+    this.socket?.close(500, "Connection closing");
   }
 }
 

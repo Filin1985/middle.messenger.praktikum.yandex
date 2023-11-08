@@ -2,7 +2,6 @@ import Block from "../../core/Block";
 import ChatTemplate from "./chat.hbs?raw";
 import { InputSearch } from "../../components";
 import { connect } from "../../utils/connect";
-import Router from "../../core/Router";
 import { Props } from "../../core/types";
 import { setChat } from "../../controllers/chat";
 
@@ -24,7 +23,7 @@ class Chat extends Block {
       onAddNewChat: (event: Event | undefined) => {
         if (!event) return;
         event.preventDefault();
-        Router.go("/create-chat");
+        window.store.set({ isAddNewChatModalOpen: true });
       },
       onSetSelected: (id: number) => {
         setChat(id);
@@ -38,9 +37,10 @@ class Chat extends Block {
 }
 
 export const ChatPage = connect(
-  ({ chats, selectedChat, isAddUserModalOpen }) => ({
+  ({ chats, selectedChat, isAddUserModalOpen, isAddNewChatModalOpen }) => ({
     chats,
     selectedChat,
     isAddUserModalOpen,
+    isAddNewChatModalOpen,
   })
 )(Chat);

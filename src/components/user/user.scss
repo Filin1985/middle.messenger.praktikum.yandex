@@ -1,0 +1,10 @@
+.user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: inherit;
+
+  &__login {
+    font-size: 14px;
+  }
+}
