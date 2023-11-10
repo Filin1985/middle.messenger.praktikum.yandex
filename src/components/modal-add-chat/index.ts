@@ -8,14 +8,12 @@ export class ModalAddChat extends Block {
     super({
       ...props,
       onAddNewChat: (event: Event | undefined) => {
-        console.log("object");
         if (!event) return;
         event.preventDefault();
         const chatTitle: HTMLInputElement | undefined =
           this.element?.querySelector("#newChat") as
             | HTMLInputElement
             | undefined;
-        console.log(chatTitle);
         if (chatTitle && chatTitle.value) {
           createChat(chatTitle.value);
           window.store.set({ isAddNewChatModalOpen: false });

@@ -22,6 +22,7 @@ export type State = {
   isAddUserModalOpen: boolean;
   isChangeAvatarModalOpen: boolean;
   isAddNewChatModalOpen: boolean;
+  isDeleteUserModalOpen: boolean;
   messagesLength: number;
 };
 
@@ -34,6 +35,7 @@ const initialState = {
   selectedChatUsers: [],
   isAddUserModalOpen: false,
   isChangeAvatarModalOpen: false,
+  isDeleteUserModalOpen: false,
   isAddNewChatModalOpen: false,
   messagesLength: 0,
 };

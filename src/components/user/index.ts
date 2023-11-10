@@ -8,11 +8,9 @@ export class User extends Block {
     super({
       ...props,
       onAddUserToChat: (event: Event | undefined) => {
-        console.log(event);
         if (!event) return;
         event.preventDefault();
         const user = this.props.user;
-        console.log(user);
         if (user) {
           addUserToChat(user);
         }

@@ -11,6 +11,7 @@
 - Node.js >14.0.0
 - Handlebars
 - Typescript 5.2.2
+  --WebSocket
 - SCSS
 - Vite 4.4.9
 
@@ -22,5 +23,3 @@ run `npm run start` - server mode
 ### Netlify Pages
 
 The entry point is [https://cerulean-malabi-a83c17.netlify.app](https://cerulean-malabi-a83c17.netlify.app)
-
-Then you can navigate around the project by using buttons and links

@@ -66,3 +66,15 @@ export const getUserById = async (id: number) => {
     throw new Error((error as ApiError).reason);
   }
 };
+
+export const getOwner = async (id: number) => {
+  try {
+    const response = (await userApi.getUserById(id)) as UserData;
+    const { user } = window.store.getState();
+    if (response && user) {
+      return response.id === (user as UserData).id;
+    }
+  } catch (error: unknown) {
+    throw new Error((error as ApiError).reason);
+  }
+};

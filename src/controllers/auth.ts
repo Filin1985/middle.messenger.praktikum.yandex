@@ -41,6 +41,10 @@ export const login = async (data: LoginData) => {
     });
     Router.go("/messenger");
   } catch (error) {
+    if ((error as ApiError).reason === "User already in system") {
+      Router.go("/messenger");
+      return;
+    }
     throw new Error((error as ApiError).reason);
   }
 };

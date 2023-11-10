@@ -71,11 +71,7 @@ class HTTP {
 
       xhr.onload = () => {
         if (xhr.status !== 200) {
-          reject(
-            new Error(
-              `Error ${xhr.status}: ${xhr?.response?.reason || xhr.statusText}`
-            )
-          );
+          reject(xhr.response);
         } else {
           resolve(xhr.response);
         }

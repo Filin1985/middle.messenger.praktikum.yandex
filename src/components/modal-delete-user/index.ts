@@ -2,19 +2,20 @@ import { searchUsers } from "../../controllers/user";
 import Block from "../../core/Block";
 import { Props } from "../../core/types";
 import { connect } from "../../utils/connect";
-import ModalAddUserTemplate from "./modalAddUser.hbs?raw";
+import ModalDeleteUserTemplate from "./modalDeleteUser.hbs?raw";
 
-export class ModalAddUserComponent extends Block {
+export class ModalDeleteUserComponent extends Block {
   constructor(props: Props) {
     super({
       ...props,
-      onAddNewUser: (event: Event | undefined) => {
+      onDeleteUser: (event: Event | undefined) => {
         if (!event) return;
         event.preventDefault();
         const searchValue: HTMLInputElement | undefined =
           this.element?.querySelector("#search") as
             | HTMLInputElement
             | undefined;
+        console.log(searchValue);
         if (searchValue && searchValue.value) {
           searchUsers({ login: searchValue.value });
         }
@@ -23,10 +24,10 @@ export class ModalAddUserComponent extends Block {
   }
 
   protected render(): string {
-    return ModalAddUserTemplate;
+    return ModalDeleteUserTemplate;
   }
 }
 
-export const ModalAddUser = connect(({ searchedUsersChats }) => ({
+export const ModalDeleteUser = connect(({ searchedUsersChats }) => ({
   searchedUsersChats,
-}))(ModalAddUserComponent);
+}))(ModalDeleteUserComponent);

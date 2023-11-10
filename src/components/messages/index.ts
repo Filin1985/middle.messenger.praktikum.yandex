@@ -1,5 +1,6 @@
 import { InputMessage } from "..";
 import { sendMessage } from "../../controllers/chat";
+import { getOwner } from "../../controllers/user";
 import Block from "../../core/Block";
 import { Props } from "../../core/types";
 import { connect } from "../../utils/connect";
@@ -24,6 +25,9 @@ export class MessagesComponent extends Block {
       onAddUser: () => {
         window.store.set({ isAddUserModalOpen: true });
       },
+      onDeleteUser: () => {
+        window.store.set({ isDeleteUserModalOpen: true });
+      },
       onKeyDown: (event: KeyboardEvent) => {
         if (event?.key === "Enter") {
           event.preventDefault();
@@ -36,6 +40,10 @@ export class MessagesComponent extends Block {
     });
   }
 
+  isOwner() {
+    return getOwner(this.props.user.id);
+  }
+
   protected send(value: string) {
     if (value) {
       sendMessage(value);
@@ -43,18 +51,19 @@ export class MessagesComponent extends Block {
   }
 
   protected render(): string {
-    console.log(this.props);
     return MessagesTemplate;
   }
 }
 
 export const Messages = connect(
   ({
+    user,
     selectedChatMessages,
     selectedChat,
     selectedChatUsers,
     messagesLength,
   }) => ({
+    user,
     selectedChatMessages,
     selectedChat,
     selectedChatUsers,

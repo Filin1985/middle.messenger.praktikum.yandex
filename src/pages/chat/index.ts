@@ -37,10 +37,17 @@ class Chat extends Block {
 }
 
 export const ChatPage = connect(
-  ({ chats, selectedChat, isAddUserModalOpen, isAddNewChatModalOpen }) => ({
+  ({
     chats,
     selectedChat,
     isAddUserModalOpen,
     isAddNewChatModalOpen,
+    isDeleteUserModalOpen,
+  }) => ({
+    chats,
+    selectedChat,
+    isAddUserModalOpen,
+    isAddNewChatModalOpen,
+    isDeleteUserModalOpen,
   })
 )(Chat);

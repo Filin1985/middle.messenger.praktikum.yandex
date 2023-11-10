@@ -58,7 +58,7 @@ class Socket {
   }
 
   closeConnect() {
-    this.socket?.close(500, "Connection closing");
+    this.socket?.close(1000, "Connection closing");
   }
 }
 

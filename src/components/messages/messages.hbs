@@ -9,8 +9,10 @@
       {{/if}}
     </div>
     <div>
-      {{{Button type="add" text="Add User" onSubmit=onAddUser}}}
-      {{{Button type="add" text="Delete User" onClick=onDeleteUser}}}
+      {{#if selectedChatUsers}}
+        {{{Button type="add" text="Add User" onSubmit=onAddUser}}}
+        {{{Button type="add" text="Delete User" onSubmit=onDeleteUser}}}
+      {{/if}}
     </div>
   </div>
   <ul class="messages__list">
@@ -18,7 +20,7 @@
       {{#if usersLength}}
         {{#if selectedChatMessages}}
           {{#each selectedChatMessages as |message|}}
-            {{{Message message=message owner=message.current_user}}}
+            {{{Message message=message}}}
           {{/each}}
         {{else}}
           <div class="messages__new">

@@ -11,7 +11,17 @@ export const getChats = async () => {
         avatar: chat.avatar
           ? `https://ya-praktikum.tech/api/v2/resources${chat.avatar}`
           : null,
-        lastMessage: chat.last_message ? { ...chat.last_message } : null,
+        last_message: chat.last_message
+          ? {
+              ...chat.last_message,
+              user: {
+                ...chat.last_message.user,
+                avatar: chat.last_message.user.avatar
+                  ? `https://ya-praktikum.tech/api/v2/resources${chat.last_message.user.avatar}`
+                  : null,
+              },
+            }
+          : null,
       };
     });
   } catch (error: unknown) {

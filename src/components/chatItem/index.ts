@@ -1,8 +1,9 @@
 import Block from "../../core/Block";
 import { Props } from "../../core/types";
+import { connect } from "../../utils/connect";
 import ChatItemTemplate from "./chatItem.hbs?raw";
 
-export class ChatItem extends Block {
+export class ChatItemComponents extends Block {
   constructor(props: Props) {
     super({
       ...props,
@@ -20,6 +21,11 @@ export class ChatItem extends Block {
   }
 
   protected render(): string {
+    console.log(this.props);
     return ChatItemTemplate;
   }
 }
+
+export const ChatItem = connect(({ user }) => ({
+  user,
+}))(ChatItemComponents);
