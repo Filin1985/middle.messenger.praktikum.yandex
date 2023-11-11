@@ -26,6 +26,7 @@ export class ModalComponent extends Block {
   }
 }
 
-export const Modal = connect(({ searchedUsersChats }) => ({
+export const Modal = connect(({ searchedUsersChats, selectedChatUsers }) => ({
   searchedUsersChats,
+  selectedChatUsers,
 }))(ModalComponent);

@@ -6,6 +6,8 @@
     {{#if search}}
       {{{InputSearch search=search onSubmit=onSubmit}}}
       {{{Users users=searchedUsersChats}}}
+    {{else if delete}}
+      {{{Users users=selectedChatUsers delete=delete}}}
     {{else}}
     <label>
       <input

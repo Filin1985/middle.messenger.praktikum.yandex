@@ -1,5 +1,5 @@
 <ul class="users">
   {{#each users as |user|}}
-    {{{User user=user}}}
+    {{{User user=user role=user.role delete=../delete}}}
   {{/each}}
 </ul>

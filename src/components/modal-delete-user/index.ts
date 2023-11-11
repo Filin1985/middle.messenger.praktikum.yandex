@@ -1,4 +1,3 @@
-import { searchUsers } from "../../controllers/user";
 import Block from "../../core/Block";
 import { Props } from "../../core/types";
 import { connect } from "../../utils/connect";
@@ -8,18 +7,6 @@ export class ModalDeleteUserComponent extends Block {
   constructor(props: Props) {
     super({
       ...props,
-      onDeleteUser: (event: Event | undefined) => {
-        if (!event) return;
-        event.preventDefault();
-        const searchValue: HTMLInputElement | undefined =
-          this.element?.querySelector("#search") as
-            | HTMLInputElement
-            | undefined;
-        console.log(searchValue);
-        if (searchValue && searchValue.value) {
-          searchUsers({ login: searchValue.value });
-        }
-      },
     });
   }
 
@@ -28,6 +15,7 @@ export class ModalDeleteUserComponent extends Block {
   }
 }
 
-export const ModalDeleteUser = connect(({ searchedUsersChats }) => ({
-  searchedUsersChats,
+export const ModalDeleteUser = connect(({ user, selectedChatUsers }) => ({
+  user,
+  selectedChatUsers,
 }))(ModalDeleteUserComponent);

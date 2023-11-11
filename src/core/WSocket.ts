@@ -51,9 +51,13 @@ class Socket {
   }
 
   message(event: MessageEvent) {
-    const data = JSON.parse(event.data);
-    if (data.type !== "user connected" && data.type !== "pong") {
-      this.callbackMessages(data);
+    try {
+      const data = JSON.parse(event.data);
+      if (data.type !== "user connected" && data.type !== "pong") {
+        this.callbackMessages(data);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 

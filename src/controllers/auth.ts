@@ -1,6 +1,7 @@
 import { authApi } from "../api/authApi";
 import { chatApi } from "../api/chatApi";
 import { ApiError, LoginData, SignupData, UserData } from "../api/types";
+import { RESOURCES_URL } from "../config";
 import Router from "../core/Router";
 
 export const signup = async (data: SignupData) => {
@@ -12,15 +13,13 @@ export const signup = async (data: SignupData) => {
     window.store.set({
       user: {
         ...response,
-        avatar: response.avatar
-          ? `https://ya-praktikum.tech/api/v2/resources${response.avatar}`
-          : null,
+        avatar: response.avatar ? `${RESOURCES_URL}${response.avatar}` : null,
       },
       chats,
     });
     Router.go("/messenger");
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
 
@@ -33,9 +32,7 @@ export const login = async (data: LoginData) => {
     window.store.set({
       user: {
         ...response,
-        avatar: response.avatar
-          ? `https://ya-praktikum.tech/api/v2/resources${response.avatar}`
-          : null,
+        avatar: response.avatar ? `${RESOURCES_URL}${response.avatar}` : null,
       },
       chats,
     });
@@ -45,7 +42,7 @@ export const login = async (data: LoginData) => {
       Router.go("/messenger");
       return;
     }
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
 
@@ -55,7 +52,7 @@ export const logout = async () => {
     Router.go("/");
     window.store.set({ user: null });
   } catch (error) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
 
@@ -65,13 +62,11 @@ export const getUserInfo = async () => {
     window.store.set({
       user: {
         ...response,
-        avatar: response.avatar
-          ? `https://ya-praktikum.tech/api/v2/resources${response.avatar}`
-          : null,
+        avatar: response.avatar ? `${RESOURCES_URL}${response.avatar}` : null,
       },
     });
     return response;
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };

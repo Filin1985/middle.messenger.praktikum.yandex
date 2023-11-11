@@ -5,6 +5,7 @@ import { loadGlobals, registerGlobals } from "./utils/utils";
 import Router from "./core/Router";
 import { getUserInfo } from "./controllers/auth";
 import { getChats } from "./controllers/chat";
+import { RESOURCES_URL } from "./config";
 
 const Components: Globals = import.meta.glob("./components/**/*.ts", {
   eager: true,
@@ -67,7 +68,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     user: {
       ...currentUser,
       avatar: currentUser.avatar
-        ? `https://ya-praktikum.tech/api/v2/resources${currentUser.avatar}`
+        ? `${RESOURCES_URL}${currentUser.avatar}`
         : null,
     },
     chats,

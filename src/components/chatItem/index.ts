@@ -21,7 +21,6 @@ export class ChatItemComponents extends Block {
   }
 
   protected render(): string {
-    console.log(this.props);
     return ChatItemTemplate;
   }
 }

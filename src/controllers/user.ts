@@ -1,6 +1,7 @@
 import { userApi } from "../api/userApi";
 import { ApiError, EditUserData, PasswordData, UserData } from "../api/types";
 import Router from "../core/Router";
+import { RESOURCES_URL } from "../config";
 
 export const editProfileData = async (data: EditUserData) => {
   try {
@@ -8,14 +9,12 @@ export const editProfileData = async (data: EditUserData) => {
     window.store.set({
       user: {
         ...response,
-        avatar: response.avatar
-          ? `https://ya-praktikum.tech/api/v2/resources${response.avatar}`
-          : null,
+        avatar: response.avatar ? `${RESOURCES_URL}${response.avatar}` : null,
       },
     });
     Router.go("/settings");
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
 
@@ -24,7 +23,7 @@ export const editPasswordData = async (data: PasswordData) => {
     await userApi.changePassword(data);
     Router.go("/settings");
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
 
@@ -36,14 +35,12 @@ export const editAvatar = async (file: File) => {
     window.store.set({
       user: {
         ...response,
-        avatar: response.avatar
-          ? `https://ya-praktikum.tech/api/v2/resources${response.avatar}`
-          : null,
+        avatar: response.avatar ? `${RESOURCES_URL}${response.avatar}` : null,
       },
     });
     Router.go("/settings");
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
 
@@ -54,7 +51,7 @@ export const searchUsers = async (data: { login: string }) => {
       searchedUsersChats: response,
     });
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
 
@@ -63,7 +60,7 @@ export const getUserById = async (id: number) => {
     const response = await userApi.getUserById(id);
     return response;
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
 
@@ -75,6 +72,6 @@ export const getOwner = async (id: number) => {
       return response.id === (user as UserData).id;
     }
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };

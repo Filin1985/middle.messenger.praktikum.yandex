@@ -1,5 +1,10 @@
 import { Options, OptionsOmitMethod, METHODS } from "./types";
 
+type HTTPMethod = <ServerResponse>(
+  url: string,
+  options?: OptionsOmitMethod
+) => Promise<ServerResponse>;
+
 class HTTP {
   protected apiUrl: string = "";
 
@@ -7,38 +12,17 @@ class HTTP {
     this.apiUrl = `https://ya-praktikum.tech/api/v2${apiPath}`;
   }
 
-  get = <ServerResponse>(
-    url: string,
-    options: OptionsOmitMethod = {}
-  ): Promise<ServerResponse> =>
-    this.request<ServerResponse>(`${this.apiUrl}${url}`, {
-      ...options,
-      method: METHODS.GET,
-    });
+  get: HTTPMethod = (url, options = {}) =>
+    this.request(`${this.apiUrl}${url}`, { ...options, method: METHODS.GET });
 
-  post = <ServerResponse>(
-    url: string,
-    options: OptionsOmitMethod = {}
-  ): Promise<ServerResponse> =>
-    this.request<ServerResponse>(`${this.apiUrl}${url}`, {
-      ...options,
-      method: METHODS.POST,
-    });
+  put: HTTPMethod = (url, options = {}) =>
+    this.request(`${this.apiUrl}${url}`, { ...options, method: METHODS.PUT });
 
-  put = <ServerResponse>(
-    url: string,
-    options: OptionsOmitMethod = {}
-  ): Promise<ServerResponse> =>
-    this.request<ServerResponse>(`${this.apiUrl}${url}`, {
-      ...options,
-      method: METHODS.PUT,
-    });
+  post: HTTPMethod = (url, options = {}) =>
+    this.request(`${this.apiUrl}${url}`, { ...options, method: METHODS.POST });
 
-  delete = <ServerResponse>(
-    url: string,
-    options: OptionsOmitMethod = {}
-  ): Promise<ServerResponse> =>
-    this.request<ServerResponse>(`${this.apiUrl}${url}`, {
+  delete: HTTPMethod = (url, options = {}) =>
+    this.request(`${this.apiUrl}${url}`, {
       ...options,
       method: METHODS.DELETE,
     });

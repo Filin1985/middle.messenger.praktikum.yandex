@@ -25,6 +25,17 @@
     background-color: var(--primary);
   }
 
+  &__minus {
+    @include size(25px, 25px, 50px);
+    background: no-repeat url(../../assets/icons/minus.svg) center;
+    border-radius: 50px;
+    background-color: var(--error);
+  }
+
+  &__disabled {
+    display: none;
+  }
+
   &__attach {
     @include size(25px, 25px, 50px);
     background: no-repeat url(../../assets/icons/file.svg) center;

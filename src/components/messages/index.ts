@@ -31,7 +31,13 @@ export class MessagesComponent extends Block {
       onKeyDown: (event: KeyboardEvent) => {
         if (event?.key === "Enter") {
           event.preventDefault();
-          // this.send();
+          const dataInputs: Record<string, string | false> = {};
+          Object.values(this.refs).forEach((child) => {
+            if (child instanceof InputMessage) {
+              dataInputs[child.name] = child.value();
+              this.send(dataInputs.message as string);
+            }
+          });
         }
       },
     });

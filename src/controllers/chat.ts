@@ -1,5 +1,6 @@
 import { chatApi } from "../api/chatApi";
 import { ApiError, UserChatData } from "../api/types";
+import { RESOURCES_URL } from "../config";
 import { wsService } from "./wsService";
 
 export const getChats = async () => {
@@ -8,16 +9,14 @@ export const getChats = async () => {
     return (await response).map((chat) => {
       return {
         ...chat,
-        avatar: chat.avatar
-          ? `https://ya-praktikum.tech/api/v2/resources${chat.avatar}`
-          : null,
+        avatar: chat.avatar ? `${RESOURCES_URL}${chat.avatar}` : null,
         last_message: chat.last_message
           ? {
               ...chat.last_message,
               user: {
                 ...chat.last_message.user,
                 avatar: chat.last_message.user.avatar
-                  ? `https://ya-praktikum.tech/api/v2/resources${chat.last_message.user.avatar}`
+                  ? `${RESOURCES_URL}${chat.last_message.user.avatar}`
                   : null,
               },
             }
@@ -25,7 +24,7 @@ export const getChats = async () => {
       };
     });
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
 
@@ -35,7 +34,7 @@ export const createChat = async (title: string) => {
     const chats = await getChats();
     window.store.set({ chats });
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
 
@@ -44,12 +43,10 @@ export const getChatUsers = async (id: number) => {
     const response = (await chatApi.getChatUsers(id)) as UserChatData[];
     return response.map((item) => ({
       ...item,
-      avatar: item.avatar
-        ? `https://ya-praktikum.tech/api/v2/resources${item.avatar}`
-        : null,
+      avatar: item.avatar ? `${RESOURCES_URL}${item.avatar}` : null,
     }));
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
 
@@ -60,7 +57,7 @@ export const getUserToken = async (chatId: number) => {
     };
     return response;
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
 
@@ -71,7 +68,7 @@ export const setChat = async (chatId: number) => {
     wsService.disconnect();
     wsService.connect();
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
 
@@ -86,7 +83,7 @@ export const deleteChat = async () => {
       });
     }
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
 
@@ -98,7 +95,7 @@ export const sendMessage = async (message: string) => {
     };
     wsService?.sendMessage(mess);
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
 
@@ -114,7 +111,7 @@ export const addUserToChat = async (data: UserChatData) => {
       window.store.set({ selectedChatUsers: newSelectedChatUsers });
     }
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
 
@@ -133,6 +130,6 @@ export const deleteUserFromChat = async (data: UserChatData) => {
       window.store.set({ selectedChatUsers: newSelectedChatUsers });
     }
   } catch (error: unknown) {
-    throw new Error((error as ApiError).reason);
+    console.log((error as ApiError).reason);
   }
 };
