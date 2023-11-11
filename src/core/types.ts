@@ -17,8 +17,7 @@ export enum METHODS {
 
 export type Options = {
   method: METHODS;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data?: Record<string | symbol, any> | FormData;
+  data?: Record<string | symbol, unknown> | FormData;
   headers?: Record<string, string>;
   timeout?: number;
   retries?: number;
@@ -39,8 +38,7 @@ export type WebSocketData = {
   userId: number;
   chatId: number;
   token: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  callbackMessages: (data: any) => void;
+  callbackMessages: (data: unknown) => void;
 };
 
 export type Message = {

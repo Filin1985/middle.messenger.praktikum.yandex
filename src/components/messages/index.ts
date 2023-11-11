@@ -28,6 +28,9 @@ export class MessagesComponent extends Block {
       onDeleteUser: () => {
         window.store.set({ isDeleteUserModalOpen: true });
       },
+      onChangeChatAvatar: () => {
+        window.store.set({ isChangeChatAvatarModalOpen: true });
+      },
       onKeyDown: (event: KeyboardEvent) => {
         if (event?.key === "Enter") {
           event.preventDefault();

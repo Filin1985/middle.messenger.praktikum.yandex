@@ -18,5 +18,6 @@ export { ModalAddUser } from "./modal-add-user";
 export { ModalDeleteUser } from "./modal-delete-user";
 export { ModalChangeAvatar } from "./modal-change-avatar";
 export { ModalAddChat } from "./modal-add-chat";
+export { ModalChangeChatAvatar } from "./modal-change-chat-avatar";
 export { User } from "./user";
 export { Users } from "./users";

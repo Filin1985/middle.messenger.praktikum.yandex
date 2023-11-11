@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
-  ApiError,
   ChatsResponse,
   MessageData,
   UserData,
@@ -13,16 +11,18 @@ export enum StoreEvents {
 }
 
 export type State = {
-  user: UserData | null | ApiError;
+  user: UserData | null;
   chats: ChatsResponse[];
   searchedUsersChats: UserData[];
   selectedChat?: number | null;
+  selectedChatId?: number | null;
   selectedChatMessages: MessageData[];
   selectedChatUsers: UserChatData[];
   isAddUserModalOpen: boolean;
   isChangeAvatarModalOpen: boolean;
   isAddNewChatModalOpen: boolean;
   isDeleteUserModalOpen: boolean;
+  isChangeChatAvatarModalOpen: boolean;
   messagesLength: number;
 };
 
@@ -32,15 +32,17 @@ const initialState = {
   selectedChatMessages: [],
   searchedUsersChats: [],
   selectedChat: null,
+  selectedChatId: null,
   selectedChatUsers: [],
   isAddUserModalOpen: false,
   isChangeAvatarModalOpen: false,
   isDeleteUserModalOpen: false,
   isAddNewChatModalOpen: false,
+  isChangeChatAvatarModalOpen: false,
   messagesLength: 0,
 };
 
-export class Store<State extends Record<string, any>> extends EventBus {
+export class Store<State extends Record<string, unknown>> extends EventBus {
   private state: State = {} as State;
 
   constructor(defaultState: State) {

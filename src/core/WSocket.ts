@@ -1,10 +1,9 @@
 import { Message, STATE, WebSocketData } from "./types";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 class Socket {
   private socket: WebSocket;
   protected timeout: number = 0;
-  protected callbackMessages: (data: any) => void;
+  protected callbackMessages: (data: unknown) => void;
 
   chatId: number;
 

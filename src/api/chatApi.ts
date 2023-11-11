@@ -28,6 +28,10 @@ export default class ChatApi extends API {
     return this.http.get<UserChatData[]>(`/${id}/users`);
   }
 
+  async changeChatAvatar(data: FormData): Promise<void | ApiError> {
+    return this.http.put<void>("/avatar", { data });
+  }
+
   async addUsersToChat(
     data: AddDeleteUsersToChatData
   ): Promise<void | ApiError> {

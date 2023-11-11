@@ -76,3 +76,8 @@ export type Message = {
   content: string;
   type: string;
 };
+
+export type ChatData = {
+  chatId: number;
+  avatar: File;
+};

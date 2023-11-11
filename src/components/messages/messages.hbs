@@ -8,10 +8,11 @@
         {{/each}}
       {{/if}}
     </div>
-    <div>
+    <div class="messages__box">
       {{#if selectedChatUsers}}
         {{{Button type="add" text="Add User" onSubmit=onAddUser}}}
         {{{Button type="add" text="Delete User" onSubmit=onDeleteUser}}}
+        {{{Button type="func" onSubmit=onChangeChatAvatar}}}
       {{/if}}
     </div>
   </div>
@@ -38,11 +39,15 @@
       </div>
     {{/if}}
   </ul>
-  {{{InputMessage
-    validateType="messageValidation"
-    name="message"
-    ref="message"
-    onClick=onSend
-    onKeyDown=onKeyDown
-  }}}
+  {{#if selectedChat}}
+    {{#if usersLength}}
+      {{{InputMessage
+        validateType="messageValidation"
+        name="message"
+        ref="message"
+        onClick=onSend
+        onKeyDown=onKeyDown
+      }}}
+    {{/if}}
+  {{/if}}
 </div>

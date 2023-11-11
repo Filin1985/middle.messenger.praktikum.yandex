@@ -64,14 +64,16 @@ window.addEventListener("DOMContentLoaded", async () => {
   }
 
   const chats = await getChats();
-  window.store.set({
-    user: {
-      ...currentUser,
-      avatar: currentUser.avatar
-        ? `${RESOURCES_URL}${currentUser.avatar}`
-        : null,
-    },
-    chats,
-  });
-  Router.start();
+  if (currentUser) {
+    window.store.set({
+      user: {
+        ...currentUser,
+        avatar: currentUser.avatar
+          ? `${RESOURCES_URL}${currentUser.avatar}`
+          : null,
+      },
+      chats,
+    });
+    Router.start();
+  }
 });

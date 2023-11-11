@@ -43,11 +43,13 @@ export const ChatPage = connect(
     isAddUserModalOpen,
     isAddNewChatModalOpen,
     isDeleteUserModalOpen,
+    isChangeChatAvatarModalOpen,
   }) => ({
     chats,
     selectedChat,
     isAddUserModalOpen,
     isAddNewChatModalOpen,
     isDeleteUserModalOpen,
+    isChangeChatAvatarModalOpen,
   })
 )(Chat);

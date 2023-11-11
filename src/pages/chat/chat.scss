@@ -15,10 +15,16 @@
     justify-content: space-between;
   }
 
+  &__box {
+    display: flex;
+    align-items: center;
+  }
+
   &__sidebar {
     display: flex;
     flex-direction: column;
-    max-width: 310px;
+    max-width: 300px;
+    width: 100%;
   }
 
   &__form {
@@ -42,7 +48,7 @@
     list-style: none;
     align-items: center;
     border-top: 1px solid var(--text);
-    padding: 12px 0;
+    padding: 12px;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);

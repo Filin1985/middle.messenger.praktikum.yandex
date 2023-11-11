@@ -37,8 +37,7 @@ class HTTP {
       const xhr = new XMLHttpRequest();
 
       if (method === METHODS.GET && data) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        url += queryStringify(data as Record<string, any>);
+        url += queryStringify(data as Record<string, unknown>);
       }
 
       xhr.open(method || METHODS.GET, url);

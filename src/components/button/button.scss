@@ -42,6 +42,12 @@
     border-radius: 50px;
   }
 
+  &__func {
+    @include size(25px, 25px, 50px);
+    background: no-repeat url(../../assets/icons/dots.svg) center;
+    border-radius: 50px;
+  }
+
   &__message {
     @include size(25px, 25px, 50px);
     background: no-repeat url(../../assets/icons/arrow.svg) center;

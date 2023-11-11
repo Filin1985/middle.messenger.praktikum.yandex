@@ -24,16 +24,30 @@
     </label>
     {{/if}}
     <div class="modal__button">
-      {{{Button
-        onSubmit=onSubmit
-        type="save"
-        text=text
-      }}}
-      {{{Button
-        onSubmit=onCloseModal
-        type="close"
-        text='Discard'
-      }}}
+      {{#if search}}
+        {{{Button
+          onSubmit=onCloseModal
+          type="save"
+          text='Finish'
+        }}}
+      {{else if delete}}
+        {{{Button
+          onSubmit=onCloseModal
+          type="save"
+          text='Finish'
+        }}}
+      {{else}}
+        {{{Button
+          onSubmit=onSubmit
+          type="save"
+          text=text
+        }}}
+        {{{Button
+          onSubmit=onCloseModal
+          type="close"
+          text='Discard'
+        }}}
+      {{/if}}
     </div>
   </fieldset>
 </form>

@@ -19,7 +19,6 @@ export class User extends Block {
         if (!event) return;
         event.preventDefault();
         const user = this.props.user;
-        console.log(user);
         if (user) {
           deleteUserFromChat(user);
         }

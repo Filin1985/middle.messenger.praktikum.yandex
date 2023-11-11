@@ -72,6 +72,20 @@ export const setChat = async (chatId: number) => {
   }
 };
 
+export const editChatAvatar = async (file: File) => {
+  const data = new FormData();
+  const { selectedChat } = window.store.getState();
+  data.append("avatar", file);
+  data.set("chatId", String(selectedChat));
+  try {
+    await chatApi.changeChatAvatar(data);
+    const chats = await getChats();
+    window.store.set({ chats });
+  } catch (error: unknown) {
+    console.log(error);
+  }
+};
+
 export const deleteChat = async () => {
   const { chats, selectedChat } = window.store.getState();
   try {

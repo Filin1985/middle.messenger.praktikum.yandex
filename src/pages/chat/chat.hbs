@@ -15,7 +15,7 @@
     {{{InputSearch name="search" ref="search" onClick=onClick}}}
     <ul class="chat__list">
       {{#each chats as |chat|}}
-        {{{ChatItem id=chat.id chat=chat onSetSelected=../onSetSelected selectedChat=../selectedChat}}}
+          {{{ChatItem id=chat.id chat=chat onSetSelected=../onSetSelected selectedChat=../selectedChat}}}
       {{/each}}
     </ul>
   </div>
@@ -23,4 +23,5 @@
   {{{ModalAddUser open=isAddUserModalOpen}}}
   {{{ModalDeleteUser open=isDeleteUserModalOpen}}}
   {{{ModalAddChat open=isAddNewChatModalOpen}}}
+  {{{ModalChangeChatAvatar open=isChangeChatAvatarModalOpen }}}
 </section>

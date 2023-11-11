@@ -15,6 +15,7 @@ export class ModalComponent extends Block {
           isChangeAvatarModalOpen: false,
           isAddNewChatModalOpen: false,
           isDeleteUserModalOpen: false,
+          isChangeChatAvatarModalOpen: false,
           searchedUsersChats: [],
         });
       },
