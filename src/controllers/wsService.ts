@@ -32,8 +32,8 @@ class WSService {
       if (user && selectedChat) {
         this.socketData.chatId = selectedChat;
         this.socketData.userId = (user as UserData).id;
-        const { token } = await getUserToken(selectedChat);
-        this.socketData.token = token;
+        const token = await getUserToken(selectedChat);
+        this.socketData.token = token!;
         this.socket = new Socket(this.socketData);
       }
     } catch (error) {

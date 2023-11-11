@@ -38,7 +38,8 @@ export type WebSocketData = {
   userId: number;
   chatId: number;
   token: string;
-  callbackMessages: (data: unknown) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  callbackMessages: (data: any) => void;
 };
 
 export type Message = {
