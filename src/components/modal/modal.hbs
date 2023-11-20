@@ -3,12 +3,51 @@
     <h2 class="auth-form__title">{{title}}</h2>
   </div>
   <fieldset class="auth-form__set">
+    {{#if search}}
+      {{{InputSearch search=search onSubmit=onSubmit}}}
+      {{{Users users=searchedUsersChats}}}
+    {{else if delete}}
+      {{{Users users=selectedChatUsers delete=delete}}}
+    {{else}}
     <label>
-      <input type="file" name="file" class="file__input" />
-      <span class="file__span">Choose file from computer</span>
+      <input
+      {{#if class}} class="{{class}}"{{/if}}
+      {{#if id}} id="{{id}}"{{/if}}
+      {{#if name}} name="{{name}}"{{/if}}
+      {{#if style}} style="{{style}}"{{/if}}
+      {{#if type}} type="{{type}}"{{/if}}
+      {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
+      {{#if value}} value="{{value}}"{{/if}}
+      {{#if accept}} accept="{{accept}}"{{/if}}
+      />
+      <span class="file__span">{{label}}</span>
     </label>
-    <div class="avatar-form__footer">
-      {{{Button type="save" text="Change" route="/profile" page="ProfilePage"}}}
+    {{/if}}
+    <div class="modal__button">
+      {{#if search}}
+        {{{Button
+          onSubmit=onCloseModal
+          type="save"
+          text='Finish'
+        }}}
+      {{else if delete}}
+        {{{Button
+          onSubmit=onCloseModal
+          type="save"
+          text='Finish'
+        }}}
+      {{else}}
+        {{{Button
+          onSubmit=onSubmit
+          type="save"
+          text=text
+        }}}
+        {{{Button
+          onSubmit=onCloseModal
+          type="close"
+          text='Discard'
+        }}}
+      {{/if}}
     </div>
   </fieldset>
 </form>

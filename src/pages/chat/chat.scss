@@ -10,10 +10,21 @@
   padding: 21px 10px 0;
   gap: 20px;
 
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__box {
+    display: flex;
+    align-items: center;
+  }
+
   &__sidebar {
     display: flex;
     flex-direction: column;
-    max-width: 310px;
+    max-width: 300px;
+    width: 100%;
   }
 
   &__form {
@@ -37,7 +48,7 @@
     list-style: none;
     align-items: center;
     border-top: 1px solid var(--text);
-    padding: 12px 0;
+    padding: 12px;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -47,7 +58,17 @@
 
     &:hover {
       cursor: pointer;
+      background-color: var(--primary);
     }
+
+    &_active {
+      background-color: var(--secondary);
+    }
+  }
+
+  &__title {
+    font-size: 12px;
+    font-weight: 700;
   }
 
   &__person {
@@ -91,11 +112,12 @@
     padding: 4px;
     margin: 0;
   }
-}
 
-.avatar {
-  width: 47px;
-  height: 47px;
-  border-radius: 50px;
-  grid-area: avatar;
+  &__avatar {
+    margin-left: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    grid-area: avatar;
+  }
 }

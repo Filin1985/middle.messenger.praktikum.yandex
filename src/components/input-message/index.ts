@@ -1,3 +1,4 @@
+import { Input } from "..";
 import Block from "../../core/Block";
 import { Props } from "../../core/types";
 import { validator } from "../../utils/validation";
@@ -38,6 +39,16 @@ export class InputMessage extends Block {
       errorBlock.setProps({ error: undefined });
     }
     return true;
+  }
+
+  public setValue(value: string) {
+    const input = (this.refs?.input as Input) || undefined;
+    if (input) {
+      const inputHtml = (input?.element as HTMLInputElement) || undefined;
+      if (inputHtml) {
+        inputHtml.value = value;
+      }
+    }
   }
 
   protected render(): string {

@@ -1,11 +1,14 @@
 import Block from "../../core/Block";
 import ChatTemplate from "./chat.hbs?raw";
-import { chatData } from "../../data/chat";
 import { InputSearch } from "../../components";
+import { connect } from "../../utils/connect";
+import { Props } from "../../core/types";
+import { setChat } from "../../controllers/chat";
 
-export class ChatPage extends Block {
-  constructor() {
+class Chat extends Block {
+  constructor(props: Props) {
     super({
+      ...props,
       onClick: (event: Event | undefined) => {
         if (!event) return;
         event.preventDefault();
@@ -17,9 +20,14 @@ export class ChatPage extends Block {
         });
         console.log(dataInputs);
       },
-    });
-    this.setProps({
-      chats: [...chatData],
+      onAddNewChat: (event: Event | undefined) => {
+        if (!event) return;
+        event.preventDefault();
+        window.store.set({ isAddNewChatModalOpen: true });
+      },
+      onSetSelected: (id: number) => {
+        setChat(id);
+      },
     });
   }
 
@@ -27,3 +35,21 @@ export class ChatPage extends Block {
     return ChatTemplate;
   }
 }
+
+export const ChatPage = connect(
+  ({
+    chats,
+    selectedChat,
+    isAddUserModalOpen,
+    isAddNewChatModalOpen,
+    isDeleteUserModalOpen,
+    isChangeChatAvatarModalOpen,
+  }) => ({
+    chats,
+    selectedChat,
+    isAddUserModalOpen,
+    isAddNewChatModalOpen,
+    isDeleteUserModalOpen,
+    isChangeChatAvatarModalOpen,
+  })
+)(Chat);

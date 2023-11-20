@@ -1,18 +1,27 @@
 <section class="chat">
   <div class="chat__sidebar">
-    {{{Link
-      linkText="Profile"
-      to="/profile"
-      type="profile"
-      iconLink="profile"
-      page="ProfilePage"
-    }}}
+    <div class="chat__container">
+      {{{Button text="Add New Chat" type="add" onSubmit=onAddNewChat}}}
+      {{{Link
+        linkText="Profile"
+        onClick=toProfile
+        to="/settings"
+        type="profile"
+        iconLink="profile"
+        page="ProfilePage"
+      }}}
+    </div>
+
     {{{InputSearch name="search" ref="search" onClick=onClick}}}
     <ul class="chat__list">
       {{#each chats as |chat|}}
-        {{{ChatItem chat=chat}}}
+          {{{ChatItem id=chat.id chat=chat onSetSelected=../onSetSelected selectedChat=../selectedChat}}}
       {{/each}}
     </ul>
   </div>
-  {{{Messages}}}
+  {{{Messages selectedChat=../selectedChat}}}
+  {{{ModalAddUser open=isAddUserModalOpen}}}
+  {{{ModalDeleteUser open=isDeleteUserModalOpen}}}
+  {{{ModalAddChat open=isAddNewChatModalOpen}}}
+  {{{ModalChangeChatAvatar open=isChangeChatAvatarModalOpen }}}
 </section>

@@ -4,7 +4,12 @@ import LinkTemplate from "./link.hbs?raw";
 
 export class Link extends Block {
   constructor(props: Props) {
-    super(props);
+    super({
+      ...props,
+      events: {
+        click: props.onClick || (() => {}),
+      },
+    });
   }
 
   protected render(): string {

@@ -1,12 +1,12 @@
-import { userData } from "../../data/user";
 import Block from "../../core/Block";
 import EditPasswordPageTemplate from "./editPassword.hbs?raw";
+import { connect } from "../../utils/connect";
+import { Props } from "../../core/types";
 
-export class EditPasswordPage extends Block {
-  constructor() {
-    super({ events: {} });
-    this.setProps({
-      user: userData,
+class EditPassword extends Block {
+  constructor(props: Props) {
+    super({
+      ...props,
     });
   }
 
@@ -14,3 +14,5 @@ export class EditPasswordPage extends Block {
     return EditPasswordPageTemplate;
   }
 }
+
+export const EditPasswordPage = connect(({ user }) => ({ user }))(EditPassword);

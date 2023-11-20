@@ -1,0 +1,12 @@
+<li class="user">
+  <h3 id="login" class="user__login">{{user.login}}</h3>
+  {{#if delete}}
+    {{#if isAdmin}}
+      {{{Button type="disabled"}}}
+    {{else}}
+      {{{Button type="minus" onSubmit=onDeleteUser}}}
+    {{/if}}
+  {{else}}
+    {{{Button type="plus" onSubmit=onAddUserToChat}}}
+  {{/if}}
+</li>

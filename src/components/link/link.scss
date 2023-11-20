@@ -55,17 +55,4 @@
     background-color: var(--primary);
     border: none;
   }
-
-  &_change {
-    @include size(130px, 130px);
-    top: 0;
-    left: 0;
-    position: absolute;
-    border-radius: 50%;
-
-    &:hover {
-      background: no-repeat url(../../assets/icons/edit.svg) center;
-      background-color: var(--primary);
-    }
-  }
 }

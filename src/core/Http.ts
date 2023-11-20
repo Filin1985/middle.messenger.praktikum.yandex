@@ -1,68 +1,85 @@
-import { Options, HttpProps } from "./types";
+import { Options, OptionsOmitMethod, METHODS } from "./types";
 
-const METHODS = {
-  GET: "GET",
-  POST: "POST",
-  PUT: "PUT",
-  DELETE: "DELETE",
-};
+type HTTPMethod = <ServerResponse>(
+  url: string,
+  options?: OptionsOmitMethod
+) => Promise<ServerResponse>;
 
-type HTTPMethod = (url: string, options: Options) => Promise<unknown>;
+class HTTP {
+  protected apiUrl: string = "";
 
-class HTTP implements HttpProps {
-  get: HTTPMethod = (url, options) => {
-    let resUrl = url;
-    const { data } = options;
+  constructor(apiPath: string = "") {
+    this.apiUrl = `https://ya-praktikum.tech/api/v2${apiPath}`;
+  }
 
-    if (data) {
-      resUrl = queryStringify(data);
-    }
+  get: HTTPMethod = (url, options = {}) =>
+    this.request(`${this.apiUrl}${url}`, { ...options, method: METHODS.GET });
 
-    return this.request(resUrl, { ...options, method: METHODS.GET });
-  };
+  put: HTTPMethod = (url, options = {}) =>
+    this.request(`${this.apiUrl}${url}`, { ...options, method: METHODS.PUT });
 
-  post: HTTPMethod = (url, options) => {
-    return this.request(url, { ...options, method: METHODS.POST });
-  };
+  post: HTTPMethod = (url, options = {}) =>
+    this.request(`${this.apiUrl}${url}`, { ...options, method: METHODS.POST });
 
-  put: HTTPMethod = (url, options) => {
-    return this.request(url, { ...options, method: METHODS.PUT });
-  };
+  delete: HTTPMethod = (url, options = {}) =>
+    this.request(`${this.apiUrl}${url}`, {
+      ...options,
+      method: METHODS.DELETE,
+    });
 
-  delete: HTTPMethod = (url, options) => {
-    return this.request(url, { ...options, method: METHODS.DELETE });
-  };
-
-  request: HTTPMethod = (url, options) => {
-    const { method, headers, data, timeout = 5000 } = options;
+  request = async <ServerResponse>(
+    url: string,
+    options: Options
+  ): Promise<ServerResponse> => {
+    const { method, headers = {}, data, timeout = 5000 } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
-      if (headers) xhr.setRequestHeader(...headers);
+
+      if (method === METHODS.GET && data) {
+        url += queryStringify(data as Record<string, unknown>);
+      }
+
+      xhr.open(method || METHODS.GET, url);
+
+      if (data instanceof FormData) {
+        xhr.setRequestHeader("Accept", "application/json");
+      } else {
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      }
+
+      Object.keys(headers).forEach((key) => {
+        xhr.setRequestHeader(key, headers[key]);
+      });
 
       xhr.onload = () => {
-        resolve(xhr);
+        if (xhr.status !== 200) {
+          reject(xhr.response);
+        } else {
+          resolve(xhr.response);
+        }
       };
 
       xhr.onabort = reject;
       xhr.onerror = reject;
       xhr.ontimeout = reject;
+      xhr.timeout = timeout;
+      xhr.withCredentials = true;
+      xhr.responseType = "json";
 
-      if (method === METHODS.GET) {
+      if (method === METHODS.GET || !data) {
         xhr.send();
+      } else if (data instanceof FormData) {
+        xhr.send(data);
       } else {
         xhr.send(JSON.stringify(data));
       }
-
-      setTimeout(() => {
-        xhr.abort();
-      }, timeout);
     });
   };
 }
 
-function queryStringify(data: [string, string][]): string {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function queryStringify(data: Record<string, any>): string | never {
   let result = "?";
 
   for (const [key, value] of Object.entries(data)) {

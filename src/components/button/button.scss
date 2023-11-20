@@ -18,16 +18,33 @@
     margin-right: 6px;
   }
 
-  &__func {
+  &__plus {
     @include size(25px, 25px, 50px);
-    background: no-repeat url(../../assets/icons/dots.svg) center;
+    background: no-repeat url(../../assets/icons/add.svg) center;
     border-radius: 50px;
     background-color: var(--primary);
+  }
+
+  &__minus {
+    @include size(25px, 25px, 50px);
+    background: no-repeat url(../../assets/icons/minus.svg) center;
+    border-radius: 50px;
+    background-color: var(--error);
+  }
+
+  &__disabled {
+    display: none;
   }
 
   &__attach {
     @include size(25px, 25px, 50px);
     background: no-repeat url(../../assets/icons/file.svg) center;
+    border-radius: 50px;
+  }
+
+  &__func {
+    @include size(25px, 25px, 50px);
+    background: no-repeat url(../../assets/icons/dots.svg) center;
     border-radius: 50px;
   }
 
@@ -46,5 +63,33 @@
     );
     color: var(--secondary);
     margin-top: 70px;
+  }
+
+  &__close {
+    @include size(280px, 37px, 8px);
+    background: var(--error);
+    color: var(--text);
+    margin-top: 70px;
+  }
+
+  &__add {
+    @include size(120px, 25px, 50px);
+    border-radius: 50px;
+    background-color: var(--primary);
+    font-size: 14px;
+  }
+
+  &__change {
+    @include size(130px, 130px, 50%);
+    top: 0;
+    left: 0;
+    position: absolute;
+    color: var(--text-form);
+    background-color: transparent;
+
+    &:hover {
+      background: no-repeat url(../../assets/icons/edit.svg) center;
+      background-color: var(--primary);
+    }
   }
 }

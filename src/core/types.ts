@@ -8,13 +8,48 @@ export type HttpProps = {
   request: (arg0: string, arg1: Options) => void;
 };
 
+export enum METHODS {
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  DELETE = "DELETE",
+}
+
 export type Options = {
-  headers?: [string, string];
-  method: string;
-  data?: [string, string][];
+  method: METHODS;
+  data?: Record<string | symbol, unknown> | FormData;
+  headers?: Record<string, string>;
   timeout?: number;
   retries?: number;
 };
-
-export type Props = Record<string | symbol, unknown>;
+export type OptionsOmitMethod = Omit<Options, "method">;
+type Events = {
+  [key: string | symbol]: (e: Event) => void;
+};
+export type Props = {
+  events?: Events;
+  parent?: Block | undefined;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string | symbol]: any;
+};
 export type Children = Record<string, Block>;
+
+export type WebSocketData = {
+  userId: number;
+  chatId: number;
+  token: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  callbackMessages: (data: any) => void;
+};
+
+export type Message = {
+  content: unknown;
+  type: string;
+};
+
+export enum STATE {
+  OPEN,
+  CONNECTING,
+  CLOSING,
+  CLOSED,
+}

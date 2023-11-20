@@ -7,7 +7,8 @@ export class Button extends Block {
     super({
       ...props,
       events: {
-        click: props.onSubmit || (() => {}),
+        ...(props.onSubmit ? { click: props.onSubmit } : {}),
+        ...(props.onClick ? { click: props.onClose } : {}),
       },
     });
   }

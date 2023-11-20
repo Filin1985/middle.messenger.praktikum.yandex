@@ -1,22 +1,53 @@
 <div class="messages">
   <div class="messages__header">
     <div class="messages__person">
-      {{#image
-        src="person_2.png" alt="Avatar" class="avatar avatar_min"
-      }}{{/image}}
-      <h3 class="messages__name">Андрей</h3>
+      {{#if selectedChatUsers}}
+        {{#each selectedChatUsers as |user|}}
+          <img src={{user.avatar}} alt="Avatar" class="chat__avatar" />
+          <h3 class="messages__name">{{user.login}}</h3>
+        {{/each}}
+      {{/if}}
     </div>
-    {{{Button type="func"}}}
+    <div class="messages__box">
+      {{#if selectedChatUsers}}
+        {{{Button type="add" text="Add User" onSubmit=onAddUser}}}
+        {{{Button type="add" text="Delete User" onSubmit=onDeleteUser}}}
+        {{{Button type="func" onSubmit=onChangeChatAvatar}}}
+      {{/if}}
+    </div>
   </div>
   <ul class="messages__list">
-    {{#each messages as |message|}}
-      {{{Message message=message owner=message.current_user}}}
-    {{/each}}
+    {{#if selectedChat}}
+      {{#if usersLength}}
+        {{#if selectedChatMessages}}
+          {{#each selectedChatMessages as |message|}}
+            {{{Message message=message}}}
+          {{/each}}
+        {{else}}
+          <div class="messages__new">
+            <h1>Write your first message</h1>
+          </div>
+        {{/if}}
+      {{else}}
+        <div class="messages__new">
+          <h1>Add a user to start your conversation</h1>
+        </div>
+      {{/if}}
+    {{else}}
+      <div class="messages__new">
+        <h1>Select chat from the list or add new one</h1>
+      </div>
+    {{/if}}
   </ul>
-  {{{InputMessage
-    validateType="messageValidation"
-    name="message"
-    ref="message"
-    onClick=onClick
-  }}}
+  {{#if selectedChat}}
+    {{#if usersLength}}
+      {{{InputMessage
+        validateType="messageValidation"
+        name="message"
+        ref="message"
+        onClick=onSend
+        onKeyDown=onKeyDown
+      }}}
+    {{/if}}
+  {{/if}}
 </div>

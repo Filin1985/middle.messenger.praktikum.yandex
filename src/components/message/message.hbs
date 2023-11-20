@@ -1,12 +1,12 @@
-<article class='message message__item_text {{#if owner}}message__owner{{/if}}'>
+<article class='message message__item_text {{#if isOwner}}message__{{isOwner}}{{/if}}'>
   {{#with message}}
     {{#if file}}
         {{#image src=file.path alt='Image Message' class='message__image'}}{{/image}}
     {{else}}
-      <p class='message__text'>{{text}}</p>
+      <p class='message__text'>{{content}}</p>
     {{/if}}
     <div class='message__time'>
-        {{#if owner}}
+        {{#if isOwner}}
             <span class='message__time_icon'></span>
         {{/if}}
         {{time}}

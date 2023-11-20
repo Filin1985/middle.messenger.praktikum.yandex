@@ -17,6 +17,11 @@
     align-items: center;
   }
 
+  &__box {
+    display: flex;
+    gap: 15px;
+  }
+
   &__person {
     display: flex;
     align-items: center;
@@ -35,11 +40,19 @@
     padding: 10px 0;
     border-top: 1px solid var(--text);
     border-bottom: 1px solid var(--text);
+    height: 80vh;
   }
 
   &__form {
     position: relative;
     display: flex;
     gap: 10px;
+  }
+
+  &__new {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
   }
 }
