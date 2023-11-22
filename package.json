@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "prepare": "husky install",
     "preview": "vite preview",
     "start": "tsc && vite build &&  node ./server.cjs",
     "lint:eslint": "eslint src/",
@@ -16,7 +15,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run test"
+      "precommit": "npm run lint && npm run test"
     }
   },
   "dependencies": {
