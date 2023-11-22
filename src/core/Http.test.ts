@@ -5,7 +5,7 @@ import sinon, {
 import { expect } from "chai";
 import Http from "./Http";
 
-describe("HTTPTransport test", () => {
+describe("Http test", () => {
   const requests: SinonFakeXMLHttpRequest[] = [];
   let xhr: SinonFakeXMLHttpRequestStatic;
   let instance: Http;
@@ -13,7 +13,7 @@ describe("HTTPTransport test", () => {
   beforeEach(() => {
     xhr = sinon.useFakeXMLHttpRequest();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (global as any).XMLHttpRequest = xhr;
+    (globalThis as any).XMLHttpRequest = xhr;
 
     xhr.onCreate = (req) => {
       requests.push(req);
@@ -23,7 +23,7 @@ describe("HTTPTransport test", () => {
 
   afterEach(() => {
     requests.length = 0;
-    xhr.restore();
+    sinon.restore();
   });
 
   it("Http get method must be called using the GET method", () => {
