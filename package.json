@@ -4,8 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "prepare": "husky install",
-    "create-hook": "husky add .husky/pre-commit \"npm test\"",
+    "prepare": "node_modules/.bin/husky-run install",
     "dev": "vite --open",
     "prebuild": "tsc --noEmit",
     "build": "npm run prebuild && vite build",
@@ -15,6 +14,11 @@
     "lint:eslint": "eslint src/",
     "lint": "npm run lint:eslint",
     "test": "mocha"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run test"
+    }
   },
   "dependencies": {
     "express": "^4.18.2",
