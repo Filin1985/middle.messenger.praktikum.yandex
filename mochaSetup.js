@@ -5,4 +5,3 @@ const jsdom = new JSDOM('<body><div id="app"></div></body>', { url: 'http://loca
 globalThis.window = jsdom.window;
 globalThis.document = jsdom.window.document;
 globalThis.Node = jsdom.window.Node;
-globalThis.MouseEvent = jsdom.window.MouseEvent;
