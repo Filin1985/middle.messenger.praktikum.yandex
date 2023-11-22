@@ -11,12 +11,11 @@
     "lint:eslint": "eslint src/",
     "lint:stylelint": "stylelint src/**/*.scss",
     "lint": "npm run lint:eslint && npm run lint:stylelint",
-    "pre-commit": "npm run lint && npm run test",
     "test": "mocha"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run pre-commit"
+      "pre-commit": "npm run lint && npm run test"
     }
   },
   "dependencies": {
