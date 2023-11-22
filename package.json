@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "prepare": "node_modules/.bin/husky-run install",
+    "prepare": "node -e \"if (process.env.NODE_ENV !== 'production'){process.exit(1)} \" || husky install",
     "dev": "vite --open",
     "prebuild": "tsc --noEmit",
     "build": "npm run prebuild && vite build",
