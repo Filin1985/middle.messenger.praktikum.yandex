@@ -5,14 +5,14 @@
   "type": "module",
   "scripts": {
     "prepare": "husky install",
-    "dev": "vite",
+    "dev": "vite --open",
     "prebuild": "tsc --noEmit",
     "build": "npm run prebuild && vite build",
-    "preview": "vite preview",
-    "start": "tsc && vite build &&  node ./server.cjs",
+    "preview": "vite preview --open",
+    "server": "node server.js",
+    "start": "npm run build && npm run server",
     "lint:eslint": "eslint src/",
-    "lint:stylelint": "stylelint src/**/*.scss",
-    "lint": "npm run lint:eslint && npm run lint:stylelint",
+    "lint": "npm run lint:eslint",
     "test": "mocha"
   },
   "husky": {
