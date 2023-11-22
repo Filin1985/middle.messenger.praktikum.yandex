@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "prepare": "husky install",
+    "postinstall": "husky install",
     "dev": "vite --open",
     "prebuild": "tsc --noEmit",
     "build": "npm run prebuild && vite build",
