@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "prepare": "node -e \"if (process.env.NODE_ENV !== 'production'){process.exit(1)} \" || husky install",
+    "postinstall": "if [ \"$npm_config_omit\" = \"dev\" ]; then echo \"Skip husky installation\"; else husky install; fi",
     "dev": "vite --open",
     "prebuild": "tsc --noEmit",
     "build": "npm run prebuild && vite build",
