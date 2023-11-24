@@ -7,10 +7,9 @@
     "prepare": "husky install",
     "dev": "vite --open",
     "prebuild": "tsc --noEmit",
-    "build": "npm run prebuild && vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview --open",
-    "server": "node server.js",
-    "start": "npm run build && npm run server",
+    "start": "tsc && vite build &&  node ./server.cjs",
     "lint:eslint": "eslint src/",
     "lint": "npm run lint:eslint",
     "test": "mocha"
