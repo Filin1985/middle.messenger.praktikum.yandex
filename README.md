@@ -11,7 +11,8 @@
 - Node.js >14.0.0
 - Handlebars
 - Typescript 5.2.2
-  --WebSocket
+- WebSocket
+- Mocha
 - SCSS
 - Vite 4.4.9
 
@@ -19,6 +20,10 @@
 
 run `npm run dev` - developing mode <br>
 run `npm run start` - server mode
+
+### Test the project
+
+run `npm run test` - server mode
 
 ### Netlify Pages
 

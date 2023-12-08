@@ -22,7 +22,7 @@ export default class Route {
   private block: Block | null = null;
 
   constructor(
-    private pathname: string,
+    readonly pathname: string,
     private readonly blockClass: BlockType,
     private readonly query: string
   ) {}

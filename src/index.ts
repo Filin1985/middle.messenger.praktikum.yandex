@@ -10,10 +10,12 @@ import { RESOURCES_URL } from "./config";
 const Components: Globals = import.meta.glob("./components/**/*.ts", {
   eager: true,
 });
+
 const Partials: Globals = import.meta.glob("./partials/**/*.ts", {
   eager: true,
 });
-const Pages: Globals = import.meta.glob("./pages/**/*.ts", {
+
+export const Pages: Globals = import.meta.glob("./pages/**/*.ts", {
   eager: true,
 });
 
